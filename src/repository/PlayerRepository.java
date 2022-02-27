@@ -55,7 +55,7 @@ public class PlayerRepository {
                 pstmt.setInt(2, player.getYearOfBirth());
                 pstmt.execute();
                 System.out.println("DB write OK!");
-                this.connection.close();
+
             }
         } catch (SQLException e) {
             System.out.println("DB write failed!");
