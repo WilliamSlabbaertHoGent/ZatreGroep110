@@ -21,6 +21,9 @@ public class DomainController {
     {
         this.playerRepository.insertPlayer(player);
     }
+    public Object[] getPlayer(String name, int year){
+        return this.playerRepository.getPlayer(name,year);
+    }
 
 
 }
