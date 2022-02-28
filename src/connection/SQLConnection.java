@@ -9,10 +9,17 @@ public class SQLConnection {
     final String URL = "jdbc:mysql://localhost/ZATRE_G110";
     final String USER = "mysqladmin";
     final String PASS = "P@ssw0rd";
+    Connection connection;
 
     public Connection connect() throws SQLException
     {
-        return DriverManager.getConnection(URL, USER, PASS);
+    	this.connection = DriverManager.getConnection(URL, USER, PASS);
+        return this.connection;
+    }
+    
+    public void closeConnection() throws SQLException
+    {
+    	this.connection.close();
     }
 
 }

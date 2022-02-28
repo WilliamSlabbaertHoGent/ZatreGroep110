@@ -34,7 +34,7 @@ public class PlayerRepository {
                     playerObject[2] = rs.getInt("yearOfBirth");
                     playerObject[3] = rs.getInt("gamesCount");
                 }
-                this.connection.close();
+          
             }
         } catch (SQLException e) {
             System.out.println("DB fetch failed!");
