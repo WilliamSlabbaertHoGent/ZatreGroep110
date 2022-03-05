@@ -53,7 +53,7 @@ public class Startup {
 		} else {
 			System.out.println("Player already exists!");
 		}
-
+		controller.menu();
 		controller.closeConnection();
 
 	}

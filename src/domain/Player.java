@@ -13,6 +13,12 @@ public class Player {
         playerID = 1;
         this.setGamesCount(5);
     }
+    public Player(int playerID,String playerName, int yearOfBirth, int gamesCount) {
+        this.setPlayerName(playerName);
+        this.setYearOfBirth(yearOfBirth);
+        this.playerID = playerID;
+        this.setGamesCount(gamesCount);
+    }
 
     public int getPlayerID() {
         return playerID;
