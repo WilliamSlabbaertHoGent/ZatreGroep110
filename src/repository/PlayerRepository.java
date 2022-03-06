@@ -15,10 +15,6 @@ public class PlayerRepository {
         this.connection = Connection;
     }
 
-    static final String URL = "jdbc:mysql://localhost/ZATRE_G110";
-    static final String USER = "mysqladmin";
-    static final String PASS = "P@ssw0rd";
-
     /*GET PLAYER DETAILS METHOD*/
     public Object[] getPlayer(String playerName, int yearOfBirth) {
         String GET_PLAYER = "SELECT * FROM players WHERE playerName = \"" + playerName + "\" AND yearOfBirth = " + yearOfBirth;

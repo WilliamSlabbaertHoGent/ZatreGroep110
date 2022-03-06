@@ -19,7 +19,12 @@ public class Player {
         this.playerID = playerID;
         this.setGamesCount(gamesCount);
     }
+    @Override
+    public String toString()
+    {
+        return String.format("%s%d%s%s%s%d%s%d","PlayerID: ",this.playerID," PlayerName: ",this.playerName,"Year of birth: ",this.yearOfBirth,"Games left: ", this.gamesCount);
 
+    }
     public int getPlayerID() {
         return playerID;
     }

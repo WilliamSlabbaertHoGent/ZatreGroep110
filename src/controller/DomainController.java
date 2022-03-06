@@ -1,6 +1,8 @@
 package controller;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -41,9 +43,35 @@ public class DomainController {
 	public boolean validatePlayer(Player player) {
 		var temp = getPlayer(player.getPlayerName(), player.getYearOfBirth());
 		if (temp[0] == null) {
-			return true;
+		//	return true;
 		}
 		return false;
+	}
+	/*
+
+	 */
+	public boolean validateExistingPlayer(Player player)
+	{
+		var temp = getPlayer(player.getPlayerName(), player.getYearOfBirth());
+		if(temp[0] != null && temp[1] != null) {
+			//Temp values for validation after checking they exist
+			String playerNameTemp = (String)temp[0];
+			int yearOfBirthTemp = (int)temp[1];
+			LocalDate now = LocalDate.now();
+			if (playerNameTemp.length() != 0 && yearOfBirthTemp > 1900 && yearOfBirthTemp <= now.getYear() ) {
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	public  void displayAllPlayers()
+	{
+		for (int i = 0; i <playerList.size(); i++)
+		{
+			Player tempPlayer = playerList.get(i);
+			tempPlayer.toString();
+		}
 	}
 	public void selectPlayer()
 	{
@@ -66,7 +94,7 @@ public class DomainController {
 		if(temp != null)
 		{
 			Player tempPlayer = new Player((int)temp[0],(String)temp[1],(int)temp[2],(int)temp[3]);
-			if(validatePlayer(tempPlayer)){
+			if(validateExistingPlayer(tempPlayer)){
 				//Second "if" because we need to display a separate message for both cases
 				if(playerList.size()<4) {
 					playerList.add(tempPlayer);
@@ -96,6 +124,9 @@ public class DomainController {
 					System.out.println("StartGame method here");
 					break;
 				case 3:
+					displayAllPlayers();
+					break;
+				case 4:
 					this.continuePlaying = false;
 					System.out.println("Closing application...");
 					break;
