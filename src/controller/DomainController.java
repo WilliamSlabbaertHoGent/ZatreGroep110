@@ -58,11 +58,13 @@ public class DomainController {
 			String playerNameTemp = (String)temp[0];
 			int yearOfBirthTemp = (int)temp[1];
 			LocalDate now = LocalDate.now();
-			if (playerNameTemp.length() != 0 && yearOfBirthTemp > 1900 && yearOfBirthTemp <= now.getYear() ) {
+			if (playerNameTemp.length() != 0 && yearOfBirthTemp > now.getYear() - 7 && yearOfBirthTemp <= now.getYear() ) {
 				return true;
 			}
+			System.out.println("Invalid playername or Year of Birth");
 			return false;
 		}
+		System.out.println("Player does not exist");
 		return false;
 	}
 	public  void displayAllPlayers()
