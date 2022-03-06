@@ -2,7 +2,6 @@ package controller;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -43,7 +42,7 @@ public class DomainController {
 	public boolean validatePlayer(Player player) {
 		var temp = getPlayer(player.getPlayerName(), player.getYearOfBirth());
 		if (temp[0] == null) {
-		//	return true;
+			return true;
 		}
 		return false;
 	}
@@ -69,10 +68,10 @@ public class DomainController {
 	}
 	public  void displayAllPlayers()
 	{
-		for (int i = 0; i <playerList.size(); i++)
+		for (int i = 0; i < playerList.size(); i++)
 		{
 			Player tempPlayer = playerList.get(i);
-			tempPlayer.toString();
+			System.out.println(tempPlayer.toString());
 		}
 	}
 	public void selectPlayer()
@@ -95,7 +94,7 @@ public class DomainController {
 		Object[] temp = getPlayer(playerName,yearOfBirth);
 		if(temp != null)
 		{
-			Player tempPlayer = new Player((int)temp[0],(String)temp[1],(int)temp[2],(int)temp[3]);
+			Player tempPlayer = new Player((String)temp[0],(int)temp[1],(int)temp[2]);
 			if(validateExistingPlayer(tempPlayer)){
 				//Second "if" because we need to display a separate message for both cases
 				if(playerList.size()<4) {
@@ -113,7 +112,7 @@ public class DomainController {
 		int option = 0;
 		Scanner menuInput = new Scanner(System.in);
 		do {
-			System.out.printf("%s%n%s%n%s%n", "Option 1: Select a player", "Option 2: Start game", "Option 3: Exit");
+			System.out.printf("%s%n%s%n%s%n%s%n", "Option 1: Select a player", "Option 2: Start game","Option 3: Display" ,"Option 4: Exit");
 			if(menuInput.hasNextInt()) {
 				option = menuInput.nextInt();
 				menuInput.hasNextLine();

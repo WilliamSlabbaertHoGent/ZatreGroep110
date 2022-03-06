@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class SQLConnection {
 
-    final String URL = "ID373150_g110.db.webhosting.be";
+    final String URL = "jdbc:mysql://ID373150_g110.db.webhosting.be/ID373150_g110";
     final String USER = "ID373150_g110";
     final String PASS = "Banaan110!";
     Connection connection;

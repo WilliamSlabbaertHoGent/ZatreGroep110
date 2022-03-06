@@ -11,15 +11,15 @@ public class Player {
         this.setYearOfBirth(yearOfBirth);
         this.setGamesCount(5);
     }
-    public Player(int playerID,String playerName, int yearOfBirth, int gamesCount) {
+    public Player(String playerName, int yearOfBirth, int gamesCount) {
         this.setPlayerName(playerName);
         this.setYearOfBirth(yearOfBirth);
-        this.setGamesCount(gamesCount);
+        this.setGamesCount(5);
     }
     @Override
     public String toString()
     {
-        return String.format("%s%d%s%s%s%d%s%d"," PlayerName: ",this.playerName,"Year of birth: ",this.yearOfBirth,"Games left: ", this.gamesCount);
+        return String.format("%s%s%s%d%s%d"," PlayerName: ",this.playerName," Year of birth: ",this.yearOfBirth,"Games left: ", this.gamesCount);
 
     }
 

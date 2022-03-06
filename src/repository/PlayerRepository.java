@@ -17,7 +17,7 @@ public class PlayerRepository {
 
     /*GET PLAYER DETAILS METHOD*/
     public Object[] getPlayer(String playerName, int yearOfBirth) {
-        String GET_PLAYER = "SELECT * FROM players WHERE playerName = \"" + playerName + "\" AND yearOfBirth = " + yearOfBirth;
+        String GET_PLAYER = "SELECT * FROM Player WHERE playerName = \"" + playerName + "\" AND yearOfBirth = " + yearOfBirth;
         Object[] playerObject = new Object[4];
         try {
 
@@ -25,10 +25,9 @@ public class PlayerRepository {
             {
                 ResultSet rs = stmt.executeQuery(GET_PLAYER);
                 while (rs.next()) {
-                    playerObject[0] = rs.getInt("playerID");
-                    playerObject[1] = rs.getString("playerName");
-                    playerObject[2] = rs.getInt("yearOfBirth");
-                    playerObject[3] = rs.getInt("gamesCount");
+                    playerObject[0] = rs.getString("playerName");
+                    playerObject[1] = rs.getInt("yearOfBirth");
+                    playerObject[2] = rs.getInt("gamesCount");
                 }
           
             }
@@ -42,13 +41,14 @@ public class PlayerRepository {
     /*WRITE INPUT TO DB METHOD*/
     public void insertPlayer(Player player)
     {
-        String INSERT_PLAYER = "INSERT INTO players (playerName, yearOfBirth) VALUES (?, ?)";
+        String INSERT_PLAYER = "INSERT INTO Player (playerName, yearOfBirth, gamesCount) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement pstmt = this.connection.prepareStatement(INSERT_PLAYER);
             {
                 pstmt.setString(1, player.getPlayerName());
                 pstmt.setInt(2, player.getYearOfBirth());
+                pstmt.setInt(3, 5);
                 pstmt.execute();
                 System.out.println("DB write OK!");
 
