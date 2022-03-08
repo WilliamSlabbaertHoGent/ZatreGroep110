@@ -1,7 +1,6 @@
 package testing;
 
 import domain.Player;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,10 +33,16 @@ public class PlayerTest {
     }
 
     @Test
-    public void test_newPlayerPlayerName_throws_InvalidArgumentException() {
+    public void test_newPlayerPlayerNameTooShort_throws_InvalidArgumentException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
            this.player.setPlayerName("test");
         });
     }
 
+    @Test
+    public void test_newPlayerPlayerNameEmpty_throws_InvalidArgumentException() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            this.player.setPlayerName("");
+        });
+    }
 }

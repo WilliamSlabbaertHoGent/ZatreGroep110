@@ -3,6 +3,7 @@ package controller;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import connection.SQLConnection;
@@ -32,7 +33,26 @@ public class DomainController {
 	}
 
 	public Object[] getPlayer(String name, int year) {
-		return this.playerRepository.getPlayer(name, year);
+
+		if (name == null || name.isEmpty()) {
+			throw new IllegalArgumentException("Name is required.");
+		}
+
+		if (year == 0) {
+			throw new IllegalArgumentException("Year is required");
+		}
+
+		Object[] player = this.playerRepository.getPlayer(name, year);
+
+		if (player[0] == null) {
+			throw new NoSuchElementException("Player does not exist");
+		}
+
+		if ((int) player[2] <= 0) {
+			throw new IllegalArgumentException("Player does not have enough games");
+		}
+
+		return player;
 	}
 
 	public void closeConnection() throws SQLException {
@@ -97,10 +117,17 @@ public class DomainController {
 			Player tempPlayer = new Player((String)temp[0],(int)temp[1],(int)temp[2]);
 			if(validateExistingPlayer(tempPlayer)){
 				//Second "if" because we need to display a separate message for both cases
-				if(playerList.size()<4) {
+
+				if(playerList.size() < 4 && !playerList.contains(tempPlayer)) {
 					playerList.add(tempPlayer);
 				}
-				else{System.out.println("The player list is already full, no more players can be added.");}
+				else{
+					if (playerList.size() < 4 ) {
+						System.out.println("The player list is already full, no more players can be added.");
+					} else {
+						System.out.println("The player has already been selected, please select another.");
+					}
+				}
 			}
 			else{System.out.print("Player could not be validated");}
 		}
