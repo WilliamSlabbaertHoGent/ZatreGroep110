@@ -4,43 +4,29 @@ import java.time.Year;
 import java.util.Calendar;
 
 public class Player {
+    /*** UC1 ***/
     String playerName;
     int yearOfBirth;
     int gamesCount;
 
     /* CLASS CONSTRUCTOR */
-    public Player(){
-        this.setGamesCount(5);
-    }
-
     public Player(String playerName, int yearOfBirth) {
         this.setPlayerName(playerName);
         this.setYearOfBirth(yearOfBirth);
-        this.setGamesCount(5);
-    }
-    public Player(String playerName, int yearOfBirth, int gamesCount) {
-        this.setPlayerName(playerName);
-        this.setYearOfBirth(yearOfBirth);
-        this.setGamesCount(gamesCount);
-    }
-    @Override
-    public String toString()
-    {
-        return String.format("%s%s%s%d%s%d"," PlayerName: ",this.playerName," Year of birth: ",this.yearOfBirth,"Games left: ", this.gamesCount);
-
+        this.setGamesCount(ConstantInterface.GAMES_COUNT_START_VALUE);
     }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
+    private void setPlayerName(String playerName) {
         if (playerName == null || playerName.isEmpty()) {
             throw new IllegalArgumentException("PlayerName is required");
         }
 
         if (playerName.length() < 5) {
-            throw new IllegalArgumentException("PlayerName must be minimum 5 characters long");
+            throw new IllegalArgumentException(String.format("Your player name must be longer than %d characters long", ConstantInterface.MIN_PLAYER_NAME_CHARACTERS));
         }
 
         this.playerName = playerName;
@@ -50,11 +36,11 @@ public class Player {
         return yearOfBirth;
     }
 
-    public void setYearOfBirth(int yearOfBirth) {
+    private void setYearOfBirth(int yearOfBirth) {
         int currentYear = Year.now().getValue();
 
-        if (currentYear - yearOfBirth < 6) {
-            throw new IllegalArgumentException("You must be 6 years old to register");
+        if (currentYear - yearOfBirth < ConstantInterface.MIN_AGE) {
+            throw new IllegalArgumentException(String.format("You must be older than %d years old to register.", ConstantInterface.MIN_AGE));
         }
 
         this.yearOfBirth = yearOfBirth;
@@ -64,10 +50,14 @@ public class Player {
         return gamesCount;
     }
 
-    public void setGamesCount(int gamesCount) {
+    private void setGamesCount(int gamesCount) {
         this.gamesCount = gamesCount;
     }
 
+    /*** UC2 ***/
+    public boolean hasEnoughGames() {
+        return this.gamesCount > 0;
+    }
 }
 
 
