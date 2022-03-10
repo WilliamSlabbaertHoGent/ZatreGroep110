@@ -5,15 +5,21 @@ import java.util.Calendar;
 
 public class Player {
     /*** UC1 ***/
-    String playerName;
-    int yearOfBirth;
-    int gamesCount;
+    private String playerName;
+    private int yearOfBirth;
+    private int gamesCount;
 
     /* CLASS CONSTRUCTOR */
     public Player(String playerName, int yearOfBirth) {
         this.setPlayerName(playerName);
         this.setYearOfBirth(yearOfBirth);
         this.setGamesCount(ConstantInterface.GAMES_COUNT_START_VALUE);
+    }
+
+    public Player(String playerName, int yearOfBirth, int gamesCount) {
+        this.setPlayerName(playerName);
+        this.setYearOfBirth(yearOfBirth);
+        this.setGamesCount(gamesCount);
     }
 
     public String getPlayerName() {
@@ -57,6 +63,15 @@ public class Player {
     /*** UC2 ***/
     public boolean hasEnoughGames() {
         return this.gamesCount > 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerName='" + playerName + '\'' +
+                ", yearOfBirth=" + yearOfBirth +
+                ", gamesCount=" + gamesCount +
+                '}';
     }
 }
 

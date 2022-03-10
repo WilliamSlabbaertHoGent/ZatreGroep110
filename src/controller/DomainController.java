@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import domain.Game;
 import domain.Player;
 import domain.PlayerRepository;
 import exceptions.NoRegisteredPlayerException;
@@ -9,10 +11,12 @@ import exceptions.NoRegisteredPlayerException;
 public class DomainController {
     Player player;
     PlayerRepository playerRepository;
+    Game game;
 
     public DomainController() {
         this.player = null;
         this.playerRepository = new PlayerRepository();
+        this.game = new Game();
     }
 
     /*** UC1 ***/
@@ -39,5 +43,30 @@ public class DomainController {
         );
 
         return playerInfo;
+    }
+
+    /*** UC2 ***/
+    public void selectPlayer(String playerName, int yearOfBirth) {
+        if (playerName.isBlank()) {
+            throw new IllegalArgumentException("Player name is required");
+        }
+
+        this.game.addPlayer(this.playerRepository.getPlayer(playerName, yearOfBirth));
+    }
+
+    public List<List<String>> getAllSelectedPlayers() {
+        List<List<String>> playerInfo = new ArrayList<>();
+        for (Player player: this.game.getAllSelectedPlayers()) {
+            List<String> singlePlayerInfo = new ArrayList<>();
+            singlePlayerInfo.add(player.toString());
+
+            playerInfo.add(singlePlayerInfo);
+        }
+
+        return playerInfo;
+    }
+
+    public boolean hasMaxPlayers() {
+        return game.hasMaxPlayers();
     }
 }

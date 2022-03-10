@@ -43,8 +43,8 @@ public class PlayerMapper {
 
                 players.add(new Player(
                         playerName,
-                        yearOfBirth
-                        // gamesCount - Comment this, not needed for current UC
+                        yearOfBirth,
+                         gamesCount
                 ));
             }
 
@@ -73,8 +73,8 @@ public class PlayerMapper {
 
                     player = new Player(
                             resultPlayerName,
-                            resultYearOfBirth
-                            //gamesCount - Comment this, not needed for current UC
+                            resultYearOfBirth,
+                            gamesCount
                     );
                 }
             }

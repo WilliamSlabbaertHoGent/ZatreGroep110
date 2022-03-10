@@ -27,4 +27,9 @@ public class PlayerRepository {
         return this.playerMapper.getPlayer(playerName, yearOfBirth) != null;
     }
 
+    /*** UC2 ***/
+    public Player getPlayer(String playerName, int yearOfBirth) {
+        return this.playerMapper.getPlayer(playerName, yearOfBirth);
+    }
+
 }
