@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 public class PlayerTest {
     Player player;
 
+    /*** UC1 ***/
     @Test
     public void test_gamesCountInitialize_assert_5() {
         this.player = new Player("testCase", 1997);

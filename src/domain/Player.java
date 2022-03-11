@@ -67,11 +67,15 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "playerName='" + playerName + '\'' +
-                ", yearOfBirth=" + yearOfBirth +
-                ", gamesCount=" + gamesCount +
-                '}';
+        return String.format(
+                "Player { %n" +
+                "playerName: %s %n" +
+                "YearOfBirth: %d %n" +
+                "gamesCount: %d %n }",
+                this.getPlayerName(),
+                this.getYearOfBirth(),
+                this.getGamesCount()
+        );
     }
 }
 

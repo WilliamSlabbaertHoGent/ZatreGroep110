@@ -55,15 +55,7 @@ public class DomainController {
     }
 
     public List<List<String>> getAllSelectedPlayers() {
-        List<List<String>> playerInfo = new ArrayList<>();
-        for (Player player: this.game.getAllSelectedPlayers()) {
-            List<String> singlePlayerInfo = new ArrayList<>();
-            singlePlayerInfo.add(player.toString());
-
-            playerInfo.add(singlePlayerInfo);
-        }
-
-        return playerInfo;
+        return this.game.getAllSelectedPlayers();
     }
 
     public boolean hasMaxPlayers() {

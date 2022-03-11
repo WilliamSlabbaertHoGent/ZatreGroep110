@@ -19,8 +19,17 @@ public class Game {
         }
     }
 
-    public List<Player> getAllSelectedPlayers() {
-        return this.players;
+
+    public List<List<String>> getAllSelectedPlayers() {
+        List<List<String>> playerInfo = new ArrayList<>();
+        for (Player player: this.players) {
+            List<String> singlePlayerInfo = new ArrayList<>();
+            singlePlayerInfo.add(player.toString());
+
+            playerInfo.add(singlePlayerInfo);
+        }
+
+        return playerInfo;
     }
 
     private boolean isValid(Player player) {
