@@ -35,12 +35,12 @@ public class Startup {
 
 				try {
 					controller.registerPlayer(playerName, yearOfBirth);
+					printer.printPlayerInfo(controller.showRegisteredPlayer());
 				} catch (RuntimeException exception) {
 					printer.printException(exception.getMessage());
 				}
 			} while (!controller.playerIsRegistered());
 
-			printer.printPlayerInfo(controller.showRegisteredPlayer());
 
 		/*** END UC1 ***/
 		} else if (choice == 2){
