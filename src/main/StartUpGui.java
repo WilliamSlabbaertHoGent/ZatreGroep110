@@ -1,12 +1,13 @@
-package gui;
+package main;
 
+import gui.WelcomeScreen;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.net.URL;
 
-public class StartUp extends Application {
+public class StartUpGui extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
