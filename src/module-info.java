@@ -1,6 +1,6 @@
 module Zatre {
     exports gui;
-    exports testing;
+    /*exports testing;*/
     exports cui;
 
     requires java.base;
@@ -18,5 +18,6 @@ module Zatre {
     requires org.opentest4j;
     requires org.junit.jupiter.api;
     requires org.junit.jupiter.params;
+    requires javafx.fxml;
 
 }
