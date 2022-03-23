@@ -2,12 +2,14 @@ package domain;
 
 import java.time.Year;
 import java.util.Calendar;
+import java.util.List;
 
 public class Player {
     /*** UC1 ***/
     private String playerName;
     private int yearOfBirth;
     private int gamesCount;
+    private List<Stone> stoneInventory;
 
     /* CLASS CONSTRUCTOR */
     public Player(String playerName, int yearOfBirth) {

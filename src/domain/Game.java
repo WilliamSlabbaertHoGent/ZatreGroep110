@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    List<Player> players;
+    private List<Player> players;
+    private GameBord gameBord;
+    private Stone totalStones;
+    private List<Turn> turns;
+    private Player winner;
 
     public Game() {
         players = new ArrayList<>();
