@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,13 +12,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SelectionMenu">
    <center>
       <SplitPane dividerPositions="0.3" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane maxHeight="400.0" maxWidth="180.0" minHeight="400.0" minWidth="180.0" prefHeight="400.0" prefWidth="180.0" style="-fx-background-color: #d3d3d3;" SplitPane.resizableWithParent="false">
+          <AnchorPane maxHeight="400.0" maxWidth="180.0" minHeight="400.0" minWidth="180.0" prefHeight="400.0" prefWidth="180.0" style="-fx-background-color: d3d3d3;">
                <children>
-                  <ImageView fitHeight="140.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="139.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/Zatre_board1.jpg" />
                      </image>
@@ -35,22 +37,40 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="14.0" layoutY="20.0" text="Please select a menu option:">
+                  <Label layoutX="14.0" layoutY="20.0" text="Please provide player information:">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#showRegisterMenu" prefHeight="20.0" prefWidth="100.0" text="Register Player">
+                  <Label layoutX="14.0" layoutY="44.0" text="Player name:">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="playerNameTXT" layoutX="14.0" layoutY="60.0" prefHeight="24.0" prefWidth="146.0" />
+                  <Label layoutX="14.0" layoutY="92.0" text="Year of birth:">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="yearOfBirthTXT" layoutX="14.0" layoutY="108.0" prefHeight="25.0" prefWidth="147.0" />
+                  <Button layoutX="14.0" layoutY="144.0" mnemonicParsing="false" onAction="#selectPlayer" prefHeight="20.0" prefWidth="60.0" text="Select">
                      <font>
                         <Font name="Berlin Sans FB" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="112.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="20.0" prefWidth="100.0" text="Exit to Desktop">
+                  <ListView fx:id="playerListView" layoutX="14.0" layoutY="190.0" prefHeight="120.0" prefWidth="200.0" />
+                  <Button layoutX="14.0" layoutY="320.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Confirm Selection">
                      <font>
                         <Font name="Berlin Sans FB" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#showSelectionMenu" prefHeight="20.0" prefWidth="100.0" text="Select Players">
+                  <Label layoutX="14.0" layoutY="174.0" text="Selected players:">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="84.0" layoutY="144.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Cancel">
                      <font>
                         <Font name="Berlin Sans FB" size="12.0" />
                      </font>

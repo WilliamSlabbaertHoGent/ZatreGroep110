@@ -2,22 +2,19 @@ module Zatre {
     exports gui;
     /*exports testing;*/
     exports cui;
-
-    requires java.base;
-    requires javafx.graphics;
-    requires javafx.controls;
-    opens gui to javafx.graphics;
+    exports controller;
+    exports persistence;
+    exports exceptions;
+    exports domain;
     exports main;
-    opens main to javafx.graphics;
 
     requires mysql.connector.java;
     requires java.sql;
-
-    requires org.apiguardian.api;
-    requires org.junit.platform.commons;
-    requires org.opentest4j;
-    requires org.junit.jupiter.api;
-    requires org.junit.jupiter.params;
+    requires java.base;
+    requires javafx.graphics;
+    requires javafx.controls;
     requires javafx.fxml;
 
+//    opens gui to javafx.graphics;
+//    opens main to javafx.graphics;
 }
