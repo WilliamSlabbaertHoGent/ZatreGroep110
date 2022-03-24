@@ -16,6 +16,10 @@ public class SelectionMenu extends BorderPane {
     private DomainController controller;
     private HomeScreen homeScreen;
 
+    public SelectionMenu() {
+        this.controller = new DomainController();
+    }
+
     public SelectionMenu(DomainController controller, HomeScreen homeScreen) throws IOException {
         this.homeScreen = homeScreen;
         this.controller = controller;
