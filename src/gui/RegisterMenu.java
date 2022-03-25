@@ -24,11 +24,14 @@ public class RegisterMenu extends BorderPane {
 
     public TextField playerNameTXT;
     public TextField yearOfBirthTXT;
+
     public Alert alert = new Alert(Alert.AlertType.NONE);
 
     public void Register() throws IOException {
         String playerName = playerNameTXT.getText();
-        int yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());
+        int yearOfBirth = 0;
+        if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank())))
+        {yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());}
         try {
             controller.registerPlayer(playerName, yearOfBirth);
             alert.setAlertType(Alert.AlertType.INFORMATION);
