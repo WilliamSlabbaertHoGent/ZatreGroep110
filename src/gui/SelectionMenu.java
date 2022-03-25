@@ -3,6 +3,7 @@ package gui;
 import controller.DomainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -17,10 +18,11 @@ public class SelectionMenu extends BorderPane {
     private HomeScreen homeScreen;
 
     public SelectionMenu() {
-        this.controller = new DomainController();
+        this.controller = controller;
+        this.homeScreen = homeScreen;
     }
 
-    public SelectionMenu(DomainController controller, HomeScreen homeScreen) throws IOException {
+    public SelectionMenu(HomeScreen homeScreen, DomainController controller) throws IOException {
         this.homeScreen = homeScreen;
         this.controller = controller;
     }
@@ -28,13 +30,28 @@ public class SelectionMenu extends BorderPane {
     public TextField playerNameTXT;
     public TextField yearOfBirthTXT;
     public ListView playerListView;
+    public Alert alert = new Alert(Alert.AlertType.NONE);
 
     public void selectPlayer() {
         String playerName = playerNameTXT.getText();
         int yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());
-        controller.selectPlayer(playerName, yearOfBirth);
-        ObservableList<List> playerListItems = FXCollections.observableArrayList(controller.getAllSelectedPlayers());
-        playerListView.setItems(playerListItems);
+        try {
+            controller.selectPlayer(playerName, yearOfBirth);
+            ObservableList<List> playerListItems = FXCollections.observableArrayList(controller.getAllSelectedPlayers());
+            playerListView.setItems(playerListItems);
+        }
+        catch (RuntimeException exception)
+        {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid input!");
+            alert.setHeaderText(exception.getMessage());
+            alert.setContentText(exception.getMessage());
+            alert.showAndWait();
+        }
+        finally {
+            playerNameTXT.clear();
+            yearOfBirthTXT.clear();
+        }
     }
 
     public void confirmSelection()

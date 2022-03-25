@@ -18,7 +18,6 @@ public class StartUpGui extends Application {
     public void start(Stage mainStage) throws Exception {
 
         this.controller = new DomainController();
-
         this.mainStage = mainStage;
         this.mainStage.setTitle("Zatre Game");
         Scene scene = new Scene(new HomeScreen(controller));

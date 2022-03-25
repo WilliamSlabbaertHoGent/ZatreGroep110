@@ -13,22 +13,23 @@ public class RegisterMenu extends BorderPane {
     private DomainController controller;
     private HomeScreen homeScreen;
 
-    public RegisterMenu() {
-        this.controller = new DomainController();
+    public RegisterMenu() throws IOException {
+        this.controller = controller;
+        this.homeScreen = homeScreen;
     }
 
-    public RegisterMenu(HomeScreen homeScreen, DomainController controller) {
+    public RegisterMenu(HomeScreen homeScreen, DomainController controller) throws IOException {
         this.homeScreen = homeScreen;
         this.controller = controller;
     }
 
     public TextField playerNameTXT;
     public TextField yearOfBirthTXT;
-
     public Alert alert = new Alert(Alert.AlertType.NONE);
 
-    public void Register() throws IOException {
+    public void registerPlayer() throws IOException {
         String playerName = playerNameTXT.getText();
+        // yearOfBirth validation in GUI as controller register method requires int parameter //
         int yearOfBirth = 0;
         if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank()) || !(yearOfBirthTXT.getText().matches("\\d*"))))
         {yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());}
@@ -36,7 +37,7 @@ public class RegisterMenu extends BorderPane {
             controller.registerPlayer(playerName, yearOfBirth);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setTitle("Success!");
-            alert.setHeaderText("Player successfully registered!");
+            alert.setHeaderText("Player successfully registered.");
             alert.setContentText("Welcome, " + playerName + "!" + "\r\n" + "Games left: " + ConstantInterface.GAMES_COUNT_START_VALUE);
             alert.showAndWait();
         } catch (RuntimeException exception) {
@@ -55,6 +56,7 @@ public class RegisterMenu extends BorderPane {
     public void Return() throws IOException {
         this.homeScreen.showMainMenu();
         // does not work yet //
+        // Cannot invoke "gui.HomeScreen.showMainMenu()" because "this.homeScreen" is null //
     }
 
 }
