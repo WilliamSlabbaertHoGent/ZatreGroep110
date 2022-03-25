@@ -30,7 +30,7 @@ public class RegisterMenu extends BorderPane {
     public void Register() throws IOException {
         String playerName = playerNameTXT.getText();
         int yearOfBirth = 0;
-        if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank())))
+        if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank()) || !(yearOfBirthTXT.getText().matches("\\d*"))))
         {yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());}
         try {
             controller.registerPlayer(playerName, yearOfBirth);
