@@ -37,7 +37,7 @@ public class Player {
         }
 
         if (playerName.length() < 5) {
-            throw new IllegalArgumentException(String.format("Player name must be longer than %d characters long.", ConstantInterface.MIN_PLAYER_NAME_CHARACTERS));
+            throw new IllegalArgumentException(String.format("Player name must be longer than %d characters long.", MIN_PLAYER_NAME_CHARACTERS));
         }
 
         this.playerName = playerName;
@@ -58,8 +58,8 @@ public class Player {
             throw new IllegalArgumentException("Please enter a value between 1950 and 2020.");
         }
 
-        if (currentYear - yearOfBirth < ConstantInterface.MIN_AGE) {
-            throw new IllegalArgumentException(String.format("You must be older than %d years old to register.", ConstantInterface.MIN_AGE));
+        if (currentYear - yearOfBirth < MIN_AGE) {
+            throw new IllegalArgumentException(String.format("You must be older than %d years old to register.", MIN_AGE));
         }
 
         this.yearOfBirth = yearOfBirth;
