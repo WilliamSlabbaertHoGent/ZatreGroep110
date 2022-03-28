@@ -3,11 +3,9 @@ package gui;
 import controller.DomainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import java.lang.*;
 
 import java.io.IOException;
 
@@ -36,6 +34,7 @@ public class SelectionMenu extends BorderPane {
 
     public void selectPlayer() {
         String playerName = playerNameTXT.getText();
+        // yearOfBirth validation in GUI as controller select method requires int parameter //
         int yearOfBirth = 0;
         if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank()) || !(yearOfBirthTXT.getText().matches("\\d*"))))
         {yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());}
@@ -65,7 +64,8 @@ public class SelectionMenu extends BorderPane {
 
     public void returnToMain() throws IOException {
         this.homeScreen.showMainMenu();
-        // does not work yet //
+        // works to return to main menu - breaks register screen afterwards //
+        // Error resolving onAction='#registerPlayer', either the event handler is not in the Namespace or there is an error in the script. //
     }
 
 }

@@ -2,10 +2,12 @@ package gui;
 
 import controller.DomainController;
 import domain.ConstantInterface;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+
 
 import java.io.IOException;
 
@@ -56,7 +58,8 @@ public class RegisterMenu extends BorderPane {
 
     public void returnToMain() throws IOException {
         this.homeScreen.showMainMenu();
-        // does not work yet //
+        // works to return to main menu - breaks register screen afterwards //
+        // Error resolving onAction='#registerPlayer', either the event handler is not in the Namespace or there is an error in the script. //
     }
 
 }

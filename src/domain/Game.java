@@ -29,7 +29,6 @@ public class Game {
         for (Player player: this.players) {
             List<String> singlePlayerInfo = new ArrayList<>();
             singlePlayerInfo.add(player.toString());
-
             playerInfo.add(singlePlayerInfo);
         }
 
