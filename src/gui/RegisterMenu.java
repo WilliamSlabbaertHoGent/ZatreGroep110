@@ -2,6 +2,7 @@ package gui;
 
 import controller.DomainController;
 import domain.ConstantInterface;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -10,8 +11,8 @@ import java.io.IOException;
 
 public class RegisterMenu extends BorderPane {
 
-    private DomainController controller;
-    private HomeScreen homeScreen;
+    private DomainController controller = new DomainController();
+    private HomeScreen homeScreen = new HomeScreen();
 
     public RegisterMenu() throws IOException {
         this.controller = controller;
@@ -53,10 +54,9 @@ public class RegisterMenu extends BorderPane {
         }
     }
 
-    public void Return() throws IOException {
+    public void returnToMain() throws IOException {
         this.homeScreen.showMainMenu();
         // does not work yet //
-        // Cannot invoke "gui.HomeScreen.showMainMenu()" because "this.homeScreen" is null //
     }
 
 }

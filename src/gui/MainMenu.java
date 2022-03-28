@@ -2,6 +2,7 @@ package gui;
 
 import controller.DomainController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -10,6 +11,12 @@ public class MainMenu extends BorderPane {
 
     private DomainController controller;
     private HomeScreen homeScreen;
+
+    public MainMenu() throws IOException
+    {
+        this.controller = controller;
+        this.homeScreen = homeScreen;
+    }
 
     public MainMenu(DomainController controller, HomeScreen homeScreen) throws IOException {
 
@@ -21,7 +28,7 @@ public class MainMenu extends BorderPane {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(HomeScreen.class.getResource("MainMenu.fxml"));
         loader.setController(this);
-        this.getScene() = loader.load();
+        this.homeScreen = loader.load();
         this.setCenter(this);
     }*/
 

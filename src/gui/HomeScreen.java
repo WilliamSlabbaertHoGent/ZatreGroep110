@@ -3,7 +3,6 @@ package gui;
 import controller.DomainController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -14,6 +13,10 @@ public class HomeScreen extends BorderPane {
     private BorderPane mainMenu; // casting exception when using menu class? //
     private BorderPane registerMenu; // casting exception when using menu class? //
     private BorderPane selectionMenu; // casting exception when using menu class? //
+
+    public HomeScreen() {
+        this.controller = controller;
+    }
 
     public HomeScreen(DomainController controller) throws IOException {
         this.controller = controller;
