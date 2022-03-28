@@ -9,20 +9,19 @@ import domain.PlayerRepository;
 import exceptions.NoRegisteredPlayerException;
 
 public class DomainController {
-    Player player;
-    PlayerRepository playerRepository;
-    Game game;
+    private Player player;
+    private final PlayerRepository playerRepository;
+    private final Game game;
 
     public DomainController() {
-        this.player = null;
         this.playerRepository = new PlayerRepository();
         this.game = new Game();
     }
 
     /*** UC1 ***/
     public void registerPlayer(String playerName, int gamesCount) {
-        this.playerRepository.registerPlayer(playerName, gamesCount);
         this.player = new Player(playerName, gamesCount);
+        this.playerRepository.registerPlayer(player);
     }
 
     public boolean playerIsRegistered()
@@ -47,7 +46,7 @@ public class DomainController {
 
     /*** UC2 ***/
     public void selectPlayer(String playerName, int yearOfBirth) {
-        if (playerName.isBlank()) {
+        if (playerName == null || playerName.isBlank()) {
             throw new IllegalArgumentException("Player name is required");
         }
 

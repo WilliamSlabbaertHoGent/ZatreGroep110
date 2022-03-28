@@ -2,6 +2,7 @@ package domain;
 
 import java.time.Year;
 import java.util.List;
+import static domain.ConstantInterface.*;
 
 public class Player {
     /*** UC1 ***/
@@ -12,9 +13,7 @@ public class Player {
 
     /* CLASS CONSTRUCTOR */
     public Player(String playerName, int yearOfBirth) {
-        this.setPlayerName(playerName);
-        this.setYearOfBirth(yearOfBirth);
-        this.setGamesCount(ConstantInterface.GAMES_COUNT_START_VALUE);
+        this(playerName, yearOfBirth, GAMES_COUNT_START_VALUE);
     }
 
     public Player(String playerName, int yearOfBirth, int gamesCount) {

@@ -11,16 +11,16 @@ public class PlayerRepository {
     }
 
     /*** UC1 ***/
-    public void registerPlayer(String playerName, int yearOfBirth) {
-        if (!this.playerExists(playerName, yearOfBirth)) {
-            this.playerMapper.registerPlayer(new Player(playerName, yearOfBirth));
-        } else {
+    public void registerPlayer(Player player) {
+        if (this.playerExists(player.getPlayerName(), player.getYearOfBirth())) {
             throw new PlayerExistsException(String.format(
                     "A player with player name '%s' and year of birth '%d' already exists",
-                    playerName,
-                    yearOfBirth
+                    player.getPlayerName(),
+                    player.getYearOfBirth()
             ));
         }
+
+        this.playerMapper.registerPlayer(player);
     }
 
     private boolean playerExists(String playerName, int yearOfBirth) {
