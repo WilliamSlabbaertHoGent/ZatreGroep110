@@ -35,22 +35,22 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="14.0" layoutY="20.0" text="Please select a menu option:">
+                  <Label layoutX="14.0" layoutY="20.0" text="%label.selectMenuOption">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#showRegisterMenu" prefHeight="20.0" prefWidth="100.0" text="Register Player">
+                  <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#showRegisterMenu" prefHeight="20.0" prefWidth="100.0" text="%label.registerPlayer">
                      <font>
                         <Font name="Berlin Sans FB" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="112.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="20.0" prefWidth="100.0" text="Exit to Desktop">
+                  <Button layoutX="14.0" layoutY="112.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="20.0" prefWidth="100.0" text="%label.exitToDesktop">
                      <font>
                         <Font name="Berlin Sans FB" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#showSelectionMenu" prefHeight="20.0" prefWidth="100.0" text="Select Players">
+                  <Button layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#showSelectionMenu" prefHeight="20.0" prefWidth="100.0" text="%label.selectPlayer">
                      <font>
                         <Font name="Berlin Sans FB" size="12.0" />
                      </font>

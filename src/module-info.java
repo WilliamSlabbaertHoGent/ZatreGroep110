@@ -7,6 +7,7 @@ module Zatre {
     exports exceptions;
     exports domain;
     exports main;
+    exports resources;
 
     requires mysql.connector.java;
     requires java.sql;
@@ -14,6 +15,7 @@ module Zatre {
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.junit.jupiter;
 
 //    opens gui to javafx.graphics;
 //    opens main to javafx.graphics;

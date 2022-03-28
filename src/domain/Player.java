@@ -1,5 +1,7 @@
 package domain;
 
+import resources.Language;
+
 import java.time.Year;
 import java.util.List;
 import static domain.ConstantInterface.*;
@@ -81,12 +83,12 @@ public class Player {
     @Override
     public String toString() {
         return String.format(
-                "Player { %n" +
-                "playerName: %s %n" +
-                "YearOfBirth: %d %n" +
-                "gamesCount: %d %n }",
+                "%s: %s (%s:%d, %s:%d)",
+                Language.getInstance().getTranslation("label.playerName"),
                 this.getPlayerName(),
+                Language.getInstance().getTranslation("label.yearOfBirth"),
                 this.getYearOfBirth(),
+                Language.getInstance().getTranslation("label.gamesCount"),
                 this.getGamesCount()
         );
     }
