@@ -5,7 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import resources.Language;
+
 import java.lang.*;
+import static domain.ConstantInterface.*;
 
 import java.io.IOException;
 
@@ -46,7 +49,9 @@ public class SelectionMenu extends BorderPane {
         catch (RuntimeException exception)
         {
             alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid input!");
+            alert.setTitle(
+                    Language.getInstance().getResourceBundle(ERROR_RESOURCE).getString("error.invalidInput")
+            );
             alert.setHeaderText(exception.getMessage());
             alert.setContentText(exception.getMessage());
             alert.showAndWait();

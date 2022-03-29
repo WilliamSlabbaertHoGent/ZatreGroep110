@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import resources.Language;
+import static domain.ConstantInterface.*;
 
 
 import java.io.IOException;
@@ -39,13 +41,27 @@ public class RegisterMenu extends BorderPane {
         try {
             controller.registerPlayer(playerName, yearOfBirth);
             alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success!");
-            alert.setHeaderText("Player successfully registered.");
-            alert.setContentText("Welcome, " + playerName + "!" + "\r\n" + "Games left: " + ConstantInterface.GAMES_COUNT_START_VALUE);
+            alert.setTitle(
+                    Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.success")
+            );
+            alert.setHeaderText(
+                    Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.registerSuccess")
+            );
+            alert.setContentText(
+                    String.format(
+                            "%s %s! %s %d",
+                            Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.welcome"),
+                            playerName,
+                            Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.gamesCount"),
+                            GAMES_COUNT_START_VALUE
+                    )
+            );
             alert.showAndWait();
         } catch (RuntimeException exception) {
             alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid input!");
+            alert.setTitle(
+                    Language.getInstance().getResourceBundle(ERROR_RESOURCE).getString("error.invalidInput")
+            );
             alert.setHeaderText(exception.getMessage());
             alert.setContentText(exception.getMessage());
             alert.showAndWait();

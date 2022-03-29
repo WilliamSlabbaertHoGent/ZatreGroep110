@@ -2,6 +2,8 @@ package domain;
 
 import exceptions.PlayerExistsException;
 import persistence.PlayerMapper;
+import resources.Language;
+import static domain.ConstantInterface.*;
 
 public class PlayerRepository {
     private final PlayerMapper playerMapper;
@@ -13,11 +15,7 @@ public class PlayerRepository {
     /*** UC1 ***/
     public void registerPlayer(Player player) {
         if (this.playerExists(player.getPlayerName(), player.getYearOfBirth())) {
-            throw new PlayerExistsException(String.format(
-                    "A player with player name '%s' and year of birth '%d' already exists",
-                    player.getPlayerName(),
-                    player.getYearOfBirth()
-            ));
+            Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.playerExists");
         }
 
         this.playerMapper.registerPlayer(player);

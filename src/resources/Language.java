@@ -5,13 +5,12 @@ import java.util.ResourceBundle;
 
 public class Language {
     private static Language language;
-    private ResourceBundle resourceBundle;
-    private Locale locale;
+    private final Locale locale;
 
     private Language() {
         //TODO::switch to fixed languages (EN/NL via GUI selection)??
-        this.locale = new Locale(Locale.getDefault().getLanguage());
-//        this.locale = new Locale("nl");
+//        this.locale = new Locale(Locale.getDefault().getLanguage());
+        this.locale = new Locale("nl");
     }
 
     public static synchronized Language getInstance() {
@@ -23,12 +22,6 @@ public class Language {
     }
 
     public ResourceBundle getResourceBundle(String bundleName) {
-        this.resourceBundle = ResourceBundle.getBundle(bundleName, locale);
-
-        return this.resourceBundle;
-    }
-
-    public String getTranslation(String message) {
-        return this.resourceBundle.getString(message);
+        return ResourceBundle.getBundle(bundleName, locale);
     }
 }

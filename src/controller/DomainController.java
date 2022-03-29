@@ -7,6 +7,8 @@ import domain.Game;
 import domain.Player;
 import domain.PlayerRepository;
 import exceptions.NoRegisteredPlayerException;
+import resources.Language;
+import static domain.ConstantInterface.*;
 
 public class DomainController {
     private Player player;
@@ -30,15 +32,25 @@ public class DomainController {
     }
     public List<String> showRegisteredPlayer() {
         if (this.player == null) {
-            throw new NoRegisteredPlayerException("No player has been registered");
+            throw new NoRegisteredPlayerException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.noPlayerHasBeenRegistered")
+            );
         }
 
         List<String> playerInfo = new ArrayList<>();
         playerInfo.add(
-                String.format("Player name: %s", this.player.getPlayerName())
+                String.format(
+                        "%s: %s",
+                        Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.playerName"),
+                        this.player.getPlayerName()
+                )
         );
         playerInfo.add(
-                String.format("Games left: %d", this.player.getGamesCount())
+                String.format(
+                        "%s: %d",
+                        Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.gamesCount"),
+                        this.player.getGamesCount()
+                )
         );
 
         return playerInfo;

@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import resources.Language;
+import static domain.ConstantInterface.*;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -29,7 +30,7 @@ public class HomeScreen extends BorderPane {
     }
 
     public void showMainMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"), Language.getInstance().getResourceBundle("resources.MessagesBundle"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"), Language.getInstance().getResourceBundle(LABEL_RESOURCE));
 //        loader.setLocation(HomeScreen.class.getResource("MainMenu.fxml"));
         loader.setController(this.mainMenu);
         this.mainMenu = loader.load();
@@ -37,7 +38,7 @@ public class HomeScreen extends BorderPane {
     }
 
     public void showRegisterMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("RegisterMenu.fxml"), Language.getInstance().getResourceBundle("resources.MessagesBundle"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RegisterMenu.fxml"), Language.getInstance().getResourceBundle(LABEL_RESOURCE));
 //        loader.setLocation(HomeScreen.class.getResource("RegisterMenu.fxml"));
         loader.setController(this.registerMenu);
         this.registerMenu = loader.load();
@@ -45,7 +46,7 @@ public class HomeScreen extends BorderPane {
     }
 
     public void showSelectionMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectionMenu.fxml"), Language.getInstance().getResourceBundle("resources.MessagesBundle"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectionMenu.fxml"), Language.getInstance().getResourceBundle(LABEL_RESOURCE));
             loader.setController(this.selectionMenu);
         this.selectionMenu = loader.load();
         this.setCenter(selectionMenu);

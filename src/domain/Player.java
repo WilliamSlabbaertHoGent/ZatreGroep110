@@ -4,6 +4,8 @@ import resources.Language;
 
 import java.time.Year;
 import java.util.List;
+import java.util.Locale;
+
 import static domain.ConstantInterface.*;
 
 public class Player {
@@ -30,16 +32,22 @@ public class Player {
 
     private void setPlayerName(String playerName) {
         if (playerName == null || playerName.isBlank()) {
-            throw new IllegalArgumentException("Player name is required.");
+            throw new IllegalArgumentException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.playerNameRequired")
+            );
         }
 
         if (!playerName.matches("[a-zA-Z0-9]{1,15}"))
         {
-            throw new IllegalArgumentException("Player name must contain alphanumeric characters only.");
+            throw new IllegalArgumentException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.numericOnly")
+            );
         }
 
         if (playerName.length() < 5) {
-            throw new IllegalArgumentException(String.format("Player name must be longer than %d characters long.", MIN_PLAYER_NAME_CHARACTERS));
+            throw new IllegalArgumentException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.playerNameTooShort")
+            );
         }
 
         this.playerName = playerName;
@@ -53,15 +61,21 @@ public class Player {
         int currentYear = Year.now().getValue();
 
         if (yearOfBirth == 0) {
-            throw new IllegalArgumentException("Year of birth is required.");
+            throw new IllegalArgumentException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.yearOfBirthRequired")
+            );
         }
 
         if (!String.valueOf(yearOfBirth).matches("(19[5-9]\\d|20[0-1]\\d|2020)")) {
-            throw new IllegalArgumentException("Please enter a value between 1950 and 2020.");
+            throw new IllegalArgumentException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.invalidYearOfBirth")
+            );
         }
 
         if (currentYear - yearOfBirth < MIN_AGE) {
-            throw new IllegalArgumentException(String.format("You must be older than %d years old to register.", MIN_AGE));
+            throw new IllegalArgumentException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.tooYoung")
+            );
         }
 
         this.yearOfBirth = yearOfBirth;
@@ -84,11 +98,11 @@ public class Player {
     public String toString() {
         return String.format(
                 "%s: %s (%s:%d, %s:%d)",
-                Language.getInstance().getTranslation("label.playerName"),
+                Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.playerName"),
                 this.getPlayerName(),
-                Language.getInstance().getTranslation("label.yearOfBirth"),
+                Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.yearOfBirth"),
                 this.getYearOfBirth(),
-                Language.getInstance().getTranslation("label.gamesCount"),
+                Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.gamesCount"),
                 this.getGamesCount()
         );
     }
