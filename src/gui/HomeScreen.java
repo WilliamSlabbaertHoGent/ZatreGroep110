@@ -30,6 +30,7 @@ public class HomeScreen extends BorderPane {
     }
 
     public void showMainMenu() throws IOException {
+        this.mainMenu = new MainMenu(this, this.controller);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"), Language.getInstance().getResourceBundle(LABEL_RESOURCE));
 //        loader.setLocation(HomeScreen.class.getResource("MainMenu.fxml"));
         loader.setController(this.mainMenu);
@@ -38,6 +39,7 @@ public class HomeScreen extends BorderPane {
     }
 
     public void showRegisterMenu() throws IOException {
+        this.registerMenu = new RegisterMenu(this, this.controller);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RegisterMenu.fxml"), Language.getInstance().getResourceBundle(LABEL_RESOURCE));
 //        loader.setLocation(HomeScreen.class.getResource("RegisterMenu.fxml"));
         loader.setController(this.registerMenu);
@@ -46,6 +48,7 @@ public class HomeScreen extends BorderPane {
     }
 
     public void showSelectionMenu() throws IOException {
+        this.selectionMenu = new SelectionMenu(this, this.controller );
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectionMenu.fxml"), Language.getInstance().getResourceBundle(LABEL_RESOURCE));
             loader.setController(this.selectionMenu);
         this.selectionMenu = loader.load();
