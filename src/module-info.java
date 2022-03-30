@@ -15,7 +15,7 @@ module Zatre {
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
-    requires org.junit.jupiter;
+    /*requires org.junit.jupiter;*/
 
 //    opens gui to javafx.graphics;
 //    opens main to javafx.graphics;
