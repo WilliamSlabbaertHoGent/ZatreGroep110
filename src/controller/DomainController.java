@@ -21,8 +21,8 @@ public class DomainController {
     }
 
     /*** UC1 ***/
-    public void registerPlayer(String playerName, int gamesCount) {
-        this.player = new Player(playerName, gamesCount);
+    public void registerPlayer(String playerName, int yearOfBirth) {
+        this.player = new Player(playerName, yearOfBirth);
         this.playerRepository.registerPlayer(player);
     }
 
@@ -31,7 +31,7 @@ public class DomainController {
         return this.player != null;
     }
     public List<String> showRegisteredPlayer() {
-        if (this.player == null) {
+        if (!this.playerIsRegistered()) {
             throw new NoRegisteredPlayerException(
                     Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.noPlayerHasBeenRegistered")
             );
