@@ -15,7 +15,9 @@ public class PlayerRepository {
     /*** UC1 ***/
     public void registerPlayer(Player player) {
         if (this.playerExists(player.getPlayerName(), player.getYearOfBirth())) {
-            Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.playerExists");
+            throw new PlayerExistsException(
+                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.playerExists")
+            );
         }
 
         this.playerMapper.registerPlayer(player);
