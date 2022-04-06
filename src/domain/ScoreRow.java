@@ -10,4 +10,9 @@ public class ScoreRow {
     private int total;
     private int orderCount;
     private ScoreBoard scoreboard;
+
+
+
 }
+
+

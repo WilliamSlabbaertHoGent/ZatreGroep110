@@ -4,7 +4,6 @@ import resources.Language;
 
 import java.time.Year;
 import java.util.List;
-import java.util.Locale;
 
 import static domain.ConstantInterface.*;
 

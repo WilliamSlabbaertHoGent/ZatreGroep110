@@ -2,9 +2,6 @@
   <library name="JavaFX17">
     <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="file://C:/Program Files/JavaFX17" />
-    </SOURCES>
-    <jarDirectory url="file://C:/Program Files/JavaFX17" recursive="false" type="SOURCES" />
+    <SOURCES />
   </library>
 </component>

@@ -7,6 +7,7 @@ import static domain.ConstantInterface.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class Game {
     private List<Player> players;
@@ -75,4 +76,10 @@ public class Game {
     public boolean hasMaxPlayers() {
         return this.players.size() == ConstantInterface.MAX_PLAYERS;
     }
+
+    /*** UC3 ***/
+    public void shufflePlayers() {
+        Collections.shuffle(this.players);
+    }
+
 }

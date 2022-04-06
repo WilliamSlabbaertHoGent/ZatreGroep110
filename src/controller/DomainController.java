@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,15 +62,30 @@ public class DomainController {
         if (playerName == null || playerName.isBlank()) {
             throw new IllegalArgumentException("Player name is required");
         }
-
         this.game.addPlayer(this.playerRepository.getPlayer(playerName, yearOfBirth));
     }
 
     public List<List<String>> getAllSelectedPlayers() {
+        // this.shufflePlayers(); TK: TEST SHUFFLE METHOD//
         return this.game.getAllSelectedPlayers();
     }
 
     public boolean hasMaxPlayers() {
         return game.hasMaxPlayers();
     }
+
+
+    /*** UC3 ***/
+    public void decreaseGamesCount(Player player) throws SQLException {
+        this.playerRepository.decreaseGamesCount(player);
+    }
+
+    public void increaseGamesCount(Player player) throws SQLException {
+        this.playerRepository.increaseGamesCount(player);
+    }
+
+    public void shufflePlayers() {
+        this.game.shufflePlayers();
+    }
+
 }

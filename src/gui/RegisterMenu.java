@@ -34,7 +34,7 @@ public class RegisterMenu extends BorderPane {
 
     public void registerPlayer() throws IOException {
         String playerName = playerNameTXT.getText();
-        // yearOfBirth validation in GUI as controller register method requires int parameter //
+
         int yearOfBirth = 0;
         if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank()) || !(yearOfBirthTXT.getText().matches("\\d*"))))
         {yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());}
@@ -74,8 +74,6 @@ public class RegisterMenu extends BorderPane {
 
     public void returnToMain() throws IOException {
         this.homeScreen.showMainMenu();
-        // works to return to main menu - breaks register screen afterwards //
-        // Error resolving onAction='#registerPlayer', either the event handler is not in the Namespace or there is an error in the script. //
     }
 
 }

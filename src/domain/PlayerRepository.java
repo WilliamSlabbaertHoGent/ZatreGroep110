@@ -3,6 +3,9 @@ package domain;
 import exceptions.PlayerExistsException;
 import persistence.PlayerMapper;
 import resources.Language;
+
+import java.sql.SQLException;
+
 import static domain.ConstantInterface.*;
 
 public class PlayerRepository {
@@ -21,6 +24,12 @@ public class PlayerRepository {
         }
 
         this.playerMapper.registerPlayer(player);
+        /*TK: TEST DECREASE GAMESCOUNT METHOD
+        try {
+            this.playerMapper.decreaseGamesCount(player);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
     }
 
     private boolean playerExists(String playerName, int yearOfBirth) {
@@ -30,6 +39,15 @@ public class PlayerRepository {
     /*** UC2 ***/
     public Player getPlayer(String playerName, int yearOfBirth) {
         return this.playerMapper.getPlayer(playerName, yearOfBirth);
+    }
+
+    /*** UC3 ***/
+    public void decreaseGamesCount(Player player) throws SQLException {
+        this.playerMapper.decreaseGamesCount(player);
+    }
+
+    public void increaseGamesCount(Player player) throws SQLException {
+        this.playerMapper.increaseGamesCount(player);
     }
 
 }

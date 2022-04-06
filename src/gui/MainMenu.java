@@ -52,7 +52,6 @@ public class MainMenu extends BorderPane {
     public void switchLanguage() throws IOException {
         Language.getInstance().setLocale((Locale) languageComboBox.getSelectionModel().getSelectedItem());
         this.homeScreen.showMainMenu();
-        // Error resolving onAction='#showRegisterMenu', either the event handler is not in the Namespace or there is an error in the script. //
     }
 
     public void closeApplication() throws IOException {

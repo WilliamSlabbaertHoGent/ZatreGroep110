@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SelectionMenu extends BorderPane {
 
-    private DomainController controller = new DomainController();;
+    private DomainController controller = new DomainController();
     private HomeScreen homeScreen = new HomeScreen();
 
     public SelectionMenu() throws IOException {
@@ -32,6 +32,7 @@ public class SelectionMenu extends BorderPane {
     public TextField playerNameTXT;
     public TextField yearOfBirthTXT;
     public ListView playerListView;
+    public Button confirmSelectionButton;
 
     public Alert alert = new Alert(Alert.AlertType.NONE);
 
@@ -45,6 +46,9 @@ public class SelectionMenu extends BorderPane {
             controller.selectPlayer(playerName, yearOfBirth);
             ObservableList<List> playerListItems = FXCollections.observableArrayList(controller.getAllSelectedPlayers());
             playerListView.setItems(playerListItems);
+            if (playerListItems.size() >= 2 ) {
+                this.confirmSelectionButton.setDisable(false);
+            }
         }
         catch (RuntimeException exception)
         {
@@ -64,13 +68,25 @@ public class SelectionMenu extends BorderPane {
 
     public void confirmSelection()
     {
-        // START GAME METHOD OR DIALOG BOX //
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.confirmPlayers"));
+        alert.setHeaderText(Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.startNewGame"));
+        alert.setContentText(Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.startNewGameLong"));
+        alert.showAndWait();
+
+        // TK
+        // START GAME(playerselection)
+        // ADJUST GAMESCOUNT(playerselection) -> decreaseGamesCount()
+        // DETERMINE ORDER OF PLAY(playerselection) -> shufflePlayers()
+        // (PLAY TURN -> RANDOM SCORE) + ADJUST SCOREBOARD
+        // CHECK WINNER
+        // ADJUST GAMESCOUNT(winner) -> increaseGamesCount()
+        // SHOW WINNER(name, gamescount)
+
     }
 
     public void returnToMain() throws IOException {
         this.homeScreen.showMainMenu();
-        // works to return to main menu - breaks register screen afterwards //
-        // Error resolving onAction='#registerPlayer', either the event handler is not in the Namespace or there is an error in the script. //
     }
 
 }

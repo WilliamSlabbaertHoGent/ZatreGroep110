@@ -13,9 +13,9 @@ import java.util.Locale;
 public class HomeScreen extends BorderPane {
 
     private DomainController controller;
-    private BorderPane mainMenu; // casting exception when using menu class? //
-    private BorderPane registerMenu; // casting exception when using menu class? //
-    private BorderPane selectionMenu; // casting exception when using menu class? //
+    private BorderPane mainMenu;
+    private BorderPane registerMenu;
+    private BorderPane selectionMenu;
 
     public HomeScreen() {
         this.controller = controller;
