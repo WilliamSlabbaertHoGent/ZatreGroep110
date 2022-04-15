@@ -19,12 +19,12 @@ public class GameBord {
     }
 
     private void setFields() {
+        fields[0][4] = Color.WHITE;
         fields[0][5] = Color.WHITE;
-        fields[0][6] = Color.WHITE;
-        fields[0][7] = Color.BLACK;
-        fields[0][9] = Color.BLACK;
+        fields[0][6] = Color.BLACK;
+        fields[0][8] = Color.BLACK;
+        fields[0][9] = Color.WHITE;
         fields[0][10] = Color.WHITE;
-        fields[0][11] = Color.WHITE;
 
         fields[1][1] = Color.BLACK;
         fields[1][2] = Color.WHITE;
@@ -130,6 +130,7 @@ public class GameBord {
         fields[7][12] = Color.WHITE;
         fields[7][13] = Color.WHITE;
 
+        fields[8][0] = Color.BLACK;
         fields[8][1] = Color.WHITE;
         fields[8][2] = Color.WHITE;
         fields[8][3] = Color.WHITE;
@@ -143,7 +144,9 @@ public class GameBord {
         fields[8][11] = Color.WHITE;
         fields[8][12] = Color.WHITE;
         fields[8][13] = Color.WHITE;
+        fields[8][14] = Color.BLACK;
 
+        fields[9][0] = Color.WHITE;
         fields[9][1] = Color.WHITE;
         fields[9][2] = Color.WHITE;
         fields[9][3] = Color.WHITE;
@@ -157,7 +160,9 @@ public class GameBord {
         fields[9][11] = Color.WHITE;
         fields[9][12] = Color.WHITE;
         fields[9][13] = Color.WHITE;
+        fields[9][14] = Color.WHITE;
 
+        fields[10][0] = Color.WHITE;
         fields[10][1] = Color.WHITE;
         fields[10][2] = Color.WHITE;
         fields[10][3] = Color.WHITE;
@@ -171,6 +176,7 @@ public class GameBord {
         fields[10][11] = Color.WHITE;
         fields[10][12] = Color.WHITE;
         fields[10][13] = Color.WHITE;
+        fields[10][14] = Color.WHITE;
 
         fields[11][1] = Color.WHITE;
         fields[11][2] = Color.WHITE;
@@ -214,11 +220,11 @@ public class GameBord {
         fields[13][12] = Color.WHITE;
         fields[13][13] = Color.BLACK;
 
+        fields[14][4] = Color.WHITE;
         fields[14][5] = Color.WHITE;
-        fields[14][6] = Color.WHITE;
-        fields[14][7] = Color.BLACK;
-        fields[14][9] = Color.BLACK;
+        fields[14][6] = Color.BLACK;
+        fields[14][8] = Color.BLACK;
+        fields[14][9] = Color.WHITE;
         fields[14][10] = Color.WHITE;
-        fields[14][11] = Color.WHITE;
     }
 }
