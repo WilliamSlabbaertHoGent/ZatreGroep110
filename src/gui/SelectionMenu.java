@@ -74,6 +74,12 @@ public class SelectionMenu extends BorderPane {
         alert.setContentText(Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.startNewGameLong"));
         alert.showAndWait();
 
+        try {
+            homeScreen.showGameScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // TK
         // START GAME(playerselection)
         // ADJUST GAMESCOUNT(playerselection) -> decreaseGamesCount()

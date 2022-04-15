@@ -18,6 +18,7 @@ public class Game {
 
     public Game() {
         players = new ArrayList<>();
+        gameBord = new GameBord(this);
     }
 
     public void addPlayer(Player player) {
@@ -80,6 +81,10 @@ public class Game {
     /*** UC3 ***/
     public void shufflePlayers() {
         Collections.shuffle(this.players);
+    }
+
+    public GameBord getGameBord() {
+        return gameBord;
     }
 
 }

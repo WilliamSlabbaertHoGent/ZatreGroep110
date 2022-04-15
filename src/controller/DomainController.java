@@ -88,4 +88,7 @@ public class DomainController {
         this.game.shufflePlayers();
     }
 
+    public Game getGame() {
+        return game;
+    }
 }

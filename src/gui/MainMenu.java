@@ -39,6 +39,10 @@ public class MainMenu extends BorderPane {
         this.homeScreen.showSelectionMenu();
     }
 
+    public void showGameScreen() throws IOException {
+        homeScreen.showGameScreen();
+    }
+
     public Label languageLabel;
     public ComboBox languageComboBox;
 

@@ -1,9 +1,12 @@
 package gui;
 
 import controller.DomainController;
+import domain.Game;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import resources.Language;
 import static domain.ConstantInterface.*;
 
@@ -16,6 +19,7 @@ public class HomeScreen extends BorderPane {
     private BorderPane mainMenu;
     private BorderPane registerMenu;
     private BorderPane selectionMenu;
+    private GridPane gameScreen;
 
     public HomeScreen() {
         this.controller = controller;
@@ -26,6 +30,7 @@ public class HomeScreen extends BorderPane {
         this.mainMenu = new MainMenu(this, controller);
         this.registerMenu = new RegisterMenu(this, controller);
         this.selectionMenu = new SelectionMenu(this, controller );
+        this.gameScreen = new GameScreen(this, controller);
         this.showMainMenu();
     }
 
@@ -53,6 +58,10 @@ public class HomeScreen extends BorderPane {
             loader.setController(this.selectionMenu);
         this.selectionMenu = loader.load();
         this.setCenter(selectionMenu);
+    }
+
+    public void showGameScreen() throws IOException {
+        setCenter(gameScreen);
     }
 
 }

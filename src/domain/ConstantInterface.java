@@ -11,4 +11,7 @@ public interface ConstantInterface {
     public final static String EXCEPTION_RESOURCE = "resources.ExceptionBundle";
     public final static String ERROR_RESOURCE = "resources.ErrorBundle";
 
+    public final static int TOTAL_FIELDS = 193;
+    public final static int BLACK_FIELDS = 34;
+    public final static int WHITE_FIELDS = 159;
 }
