@@ -4,12 +4,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
-public class Field extends Label {
+public class FieldLabel extends Label {
     private static final String defaultStyleBlack = "-fx-background-color: gray;-fx-border-color: black;";
     private static final String defaultStyleWhite = "-fx-background-color: white;-fx-border-color: black";
     private static final String defaultStyleTransparent = "-fx-background-color: red; -fx-border-color: transparent";
 
-    public Field(Color color) {
+    public FieldLabel(Color color) {
         setAlignment(Pos.CENTER);
         setStyle(getStyle(color));
         setMinSize(50,50);

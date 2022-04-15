@@ -1,12 +1,10 @@
 package gui;
 
 import controller.DomainController;
+import domain.Field;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 
 public class GameScreen extends GridPane {
     private final DomainController domainController;
@@ -22,11 +20,14 @@ public class GameScreen extends GridPane {
 
     private void addComponents() {
         int x = 0;
-        for (Color[] field: domainController.getGame().getGameBord().getFields()) {
+        for (Field[] arr: domainController.getGame().getGameBord().getFields()) {
             int y = 0;
-            for (Color color: field) {
-                Field playField = new Field(color);
-                add(playField, y, x);
+            for (Field field: arr) {
+
+                if (field != null) {
+                    FieldLabel playField = new FieldLabel(field.getColor());
+                    add(playField, y, x);
+                }
 
                 y++;
             }
