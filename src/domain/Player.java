@@ -3,6 +3,8 @@ package domain;
 import resources.Language;
 
 import java.time.Year;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static domain.ConstantInterface.*;
@@ -12,6 +14,7 @@ public class Player {
     private String playerName;
     private int yearOfBirth;
     private int gamesCount;
+    private ScoreBoard scoreBoard;
     /*private List<Stone> stoneInventory;*/
 
     /* CLASS CONSTRUCTOR */
@@ -45,7 +48,7 @@ public class Player {
 
         if (playerName.length() < 5) {
             throw new IllegalArgumentException(
-                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.playerNameTooShort")
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.playerNameTooShort", MIN_PLAYER_NAME_CHARACTERS)
             );
         }
 
@@ -66,14 +69,16 @@ public class Player {
         }
 
         if (!String.valueOf(yearOfBirth).matches("(19[5-9]\\d|20[0-1]\\d|2020)")) {
+            int year = Calendar.getInstance().get(Calendar.YEAR);
+
             throw new IllegalArgumentException(
-                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.invalidYearOfBirth")
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.invalidYearOfBirth", year - 2)
             );
         }
 
         if (currentYear - yearOfBirth < MIN_AGE) {
             throw new IllegalArgumentException(
-                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.tooYoung")
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.tooYoung", MIN_AGE)
             );
         }
 

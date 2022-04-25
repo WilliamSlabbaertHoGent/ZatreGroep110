@@ -63,7 +63,7 @@ public class Game {
 
         if (this.hasMaxPlayers()) {
             throw new PlayerSelectedException(
-                    Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.tooManyPlayers")
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.tooManyPlayers", MAX_PLAYERS)
             );
         }
 

@@ -9,10 +9,6 @@ public class ScoreRow {
     private boolean bonus;
     private int total;
     private int orderCount;
-    private ScoreBoard scoreboard;
-
-
-
 }
 
 

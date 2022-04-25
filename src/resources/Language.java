@@ -1,5 +1,6 @@
 package resources;
 
+import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -23,6 +24,13 @@ public class Language {
 
     public ResourceBundle getResourceBundle(String bundleName) {
         return ResourceBundle.getBundle(bundleName, locale);
+    }
+
+    public String getString(String bundleName, String key, Object... parameters) {
+        return MessageFormat.format(
+                getResourceBundle(bundleName).getString(key),
+                parameters
+        );
     }
 
     public void setLocale(Locale locale) {
