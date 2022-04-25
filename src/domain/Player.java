@@ -12,7 +12,7 @@ public class Player {
     private String playerName;
     private int yearOfBirth;
     private int gamesCount;
-    private List<Stone> stoneInventory;
+    /*private List<Stone> stoneInventory;*/
 
     /* CLASS CONSTRUCTOR */
     public Player(String playerName, int yearOfBirth) {
