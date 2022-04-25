@@ -2,6 +2,7 @@ package gui;
 
 import controller.DomainController;
 import domain.Game;
+import domain.Tile;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,9 @@ public class HomeScreen extends BorderPane {
 
     public HomeScreen() {
         this.controller = controller;
+    }
+    public DomainController getDomainController(){
+        return this.controller;
     }
 
     public HomeScreen(DomainController controller) throws IOException {
@@ -63,5 +67,4 @@ public class HomeScreen extends BorderPane {
     public void showGameScreen() throws IOException {
         setCenter(gameScreen);
     }
-
 }

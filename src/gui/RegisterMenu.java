@@ -15,8 +15,8 @@ import java.io.IOException;
 
 public class RegisterMenu extends BorderPane {
 
-    private DomainController controller = new DomainController();
-    private HomeScreen homeScreen = new HomeScreen();
+    private DomainController controller;
+    private HomeScreen homeScreen;
 
     public RegisterMenu() throws IOException {
         this.controller = controller;

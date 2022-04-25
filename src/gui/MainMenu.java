@@ -15,20 +15,19 @@ import java.util.Locale;
 
 public class MainMenu extends BorderPane {
 
-    private DomainController controller = new DomainController();
-    private HomeScreen homeScreen = new HomeScreen();
+    private HomeScreen homeScreen;
     public Locale[] supportedLanguages = {new Locale("nl"), new Locale(Locale.getDefault().getLanguage())};
+    public DomainController domainController;
 
     public MainMenu() throws IOException
     {
-        this.controller = controller;
         this.homeScreen = homeScreen;
+        this.domainController = homeScreen.getDomainController();
     }
 
     public MainMenu(HomeScreen homeScreen, DomainController controller) throws IOException {
-
-        this.controller = controller;
         this.homeScreen = homeScreen;
+        this.domainController = controller;
     }
 
     public void showRegisterMenu() throws IOException {

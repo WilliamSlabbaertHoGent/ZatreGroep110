@@ -2,6 +2,7 @@ package gui;
 
 import controller.DomainController;
 import domain.Field;
+import domain.Game;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -23,12 +24,10 @@ public class GameScreen extends GridPane {
         for (Field[] arr: domainController.getGame().getGameBord().getFields()) {
             int y = 0;
             for (Field field: arr) {
-
                 if (field != null) {
                     FieldLabel playField = new FieldLabel(field.getColor());
                     add(playField, y, x);
                 }
-
                 y++;
             }
             x++;

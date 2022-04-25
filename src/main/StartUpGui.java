@@ -1,6 +1,7 @@
 package main;
 
 import controller.DomainController;
+import domain.Game;
 import gui.HomeScreen;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class StartUpGui extends Application {
     public void start(Stage mainStage) throws Exception {
 
         this.controller = new DomainController();
+        this.controller.setGame(new Game());
         this.mainStage = mainStage;
         this.mainStage.setTitle("Zatre Game");
         Scene scene = new Scene(new HomeScreen(controller));

@@ -16,8 +16,8 @@ import java.util.List;
 
 public class SelectionMenu extends BorderPane {
 
-    private DomainController controller = new DomainController();
-    private HomeScreen homeScreen = new HomeScreen();
+    private DomainController controller;
+    private HomeScreen homeScreen;
 
     public SelectionMenu() throws IOException {
         this.controller = controller;

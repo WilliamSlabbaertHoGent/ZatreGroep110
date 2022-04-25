@@ -14,11 +14,13 @@ import static domain.ConstantInterface.*;
 public class DomainController {
     private Player player;
     private final PlayerRepository playerRepository;
-    private final Game game;
+    private Game game;
 
     public DomainController() {
         this.playerRepository = new PlayerRepository();
-        this.game = new Game();
+    }
+    public void setGame(Game game){
+        this.game = game;
     }
 
     /*** UC1 ***/
