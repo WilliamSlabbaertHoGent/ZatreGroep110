@@ -12,7 +12,7 @@ import java.util.Collections;
 public class Game {
     private List<Player> players;
     private GameBord gameBord;
-    /*private GameInventory gameInventory;*/
+    private GameInventory gameInventory;
     private Player winner;
     private Player activePlayer;
     private boolean firstTurn = true; // TK - TO DETERMINE TILES DRAWN
@@ -20,7 +20,7 @@ public class Game {
     public Game() {
         players = new ArrayList<>();
         gameBord = new GameBord(this);
-        /*gameInventory = new GameInventory(this);*/
+        gameInventory = new GameInventory();
     }
 
     public void addPlayer(Player player) {
