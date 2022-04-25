@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Collections;
 
 public class Game {
-    private List<Player> players;
+    public List<Player> players;
     private GameBord gameBord;
     private GameInventory gameInventory;
     private Player winner;
