@@ -89,7 +89,7 @@ public class PlayerMapper {
     }
 
     /*** UC3 ***/
-    public void decreaseGamesCount(Player player) throws SQLException {
+    public void decreaseGamesCount(Player player) {
         try(
                 Connection connection = DriverManager.getConnection(SQLConnection.DATABASE_URL);
                 PreparedStatement query = connection.prepareStatement(DECREASE_GAMESCOUNT)

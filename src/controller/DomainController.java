@@ -78,8 +78,10 @@ public class DomainController {
 
 
     /*** UC3 ***/
-    public void decreaseGamesCount(Player player) throws SQLException {
-        this.playerRepository.decreaseGamesCount(player);
+    public void decreaseGamesCountForPlayers() {
+        for (Player player: game.getPlayers()) {
+            this.playerRepository.decreaseGamesCount(player);
+        }
     }
 
     public void increaseGamesCount(Player player) throws SQLException {
@@ -88,6 +90,10 @@ public class DomainController {
 
     public void shufflePlayers() {
         this.game.shufflePlayers();
+    }
+
+    public void setActivePlayer() {
+        this.game.setActivePlayer();
     }
 
     public Game getGame() {

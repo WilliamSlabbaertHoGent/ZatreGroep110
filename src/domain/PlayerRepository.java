@@ -42,7 +42,7 @@ public class PlayerRepository {
     }
 
     /*** UC3 ***/
-    public void decreaseGamesCount(Player player) throws SQLException {
+    public void decreaseGamesCount(Player player) {
         this.playerMapper.decreaseGamesCount(player);
     }
 

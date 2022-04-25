@@ -30,6 +30,10 @@ public class Game {
     }
 
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     public List<List<String>> getAllSelectedPlayers() {
         List<List<String>> playerInfo = new ArrayList<>();
         for (Player player: this.players) {
@@ -85,8 +89,11 @@ public class Game {
         Collections.shuffle(this.players);
     }
 
+    public void setActivePlayer() {
+        activePlayer = players.get(0);
+    }
+
     public GameBord getGameBord() {
         return gameBord;
     }
-
 }

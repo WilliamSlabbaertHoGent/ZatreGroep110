@@ -17,6 +17,10 @@ public class GameScreen extends GridPane {
 
         setAlignment(Pos.CENTER);
         addComponents();
+
+        domainController.decreaseGamesCountForPlayers();
+        domainController.shufflePlayers();
+        domainController.setActivePlayer();
     }
 
     private void addComponents() {
