@@ -12,9 +12,9 @@ import java.util.Collections;
 public class Game {
     private List<Player> players;
     private GameBord gameBord;
-    private Stone totalStones;
-    private List<Turn> turns;
     private Player winner;
+    private Player activePlayer;
+    private boolean firstTurn = true; // TK - TO DETERMINE TILES DRAWN
 
     public Game() {
         players = new ArrayList<>();

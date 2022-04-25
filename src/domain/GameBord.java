@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameBord {
-    private List<Box> boxes = new ArrayList<>();
-    private List<Stone> placedStones = new ArrayList<>();
+    /*private List<Box> boxes = new ArrayList<>();*/
+    /*private List<Stone> placedStones = new ArrayList<>();*/
     private final Field[][] fields = new Field[15][15];
 
     public GameBord(Game game) {
