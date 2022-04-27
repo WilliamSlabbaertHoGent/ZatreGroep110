@@ -19,12 +19,12 @@ public class StartUpGui extends Application {
     public void start(Stage mainStage) throws Exception {
 
         this.controller = new DomainController();
-        this.controller.setGame(new Game());
+        this.controller.startNewGame();
         this.mainStage = mainStage;
         this.mainStage.setTitle("Zatre Game");
         Scene scene = new Scene(new HomeScreen(controller));
         mainStage.setHeight(850);
-        mainStage.setWidth(850);
+        mainStage.setWidth(1400);
         mainStage.setResizable(false);
         mainStage.setScene(scene);
         mainStage.show();

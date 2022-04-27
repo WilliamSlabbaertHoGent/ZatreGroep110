@@ -22,9 +22,6 @@ public class HomeScreen extends BorderPane {
     private BorderPane selectionMenu;
     private GridPane gameScreen;
 
-    public HomeScreen() {
-        this.controller = controller;
-    }
     public DomainController getDomainController(){
         return this.controller;
     }
@@ -34,7 +31,7 @@ public class HomeScreen extends BorderPane {
         this.mainMenu = new MainMenu(this, controller);
         this.registerMenu = new RegisterMenu(this, controller);
         this.selectionMenu = new SelectionMenu(this, controller );
-        this.gameScreen = new GameScreen(this, controller);
+//        this.gameScreen = new GameScreen(this, controller);
         this.showMainMenu();
     }
 
@@ -66,5 +63,9 @@ public class HomeScreen extends BorderPane {
 
     public void showGameScreen() throws IOException {
         setCenter(gameScreen);
+    }
+
+    public void setGameScreen() {
+        this.gameScreen = new GameScreen(this, controller);
     }
 }

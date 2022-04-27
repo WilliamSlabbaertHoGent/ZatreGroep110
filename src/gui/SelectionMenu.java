@@ -76,6 +76,8 @@ public class SelectionMenu extends BorderPane {
         alert.showAndWait();
 
         try {
+            controller.setupGame();
+            homeScreen.setGameScreen();
             homeScreen.showGameScreen();
         } catch (IOException e) {
             e.printStackTrace();

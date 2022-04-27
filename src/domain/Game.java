@@ -19,7 +19,7 @@ public class Game {
 
     public Game() {
         players = new ArrayList<>();
-        gameBord = new GameBord(this);
+        gameBord = new GameBord();
         gameInventory = new GameInventory();
     }
 

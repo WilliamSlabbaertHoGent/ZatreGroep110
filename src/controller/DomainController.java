@@ -19,6 +19,7 @@ public class DomainController {
     public DomainController() {
         this.playerRepository = new PlayerRepository();
     }
+
     public void setGame(Game game){
         this.game = game;
     }
@@ -93,10 +94,21 @@ public class DomainController {
     }
 
     public void setActivePlayer() {
-        //this.game.setActivePlayer();
+        this.game.setActivePlayer();
     }
 
     public Game getGame() {
         return game;
+    }
+
+    public void startNewGame() {
+        game = new Game();
+    }
+
+
+    public void setupGame() {
+        decreaseGamesCountForPlayers();
+        shufflePlayers();
+        setActivePlayer();
     }
 }

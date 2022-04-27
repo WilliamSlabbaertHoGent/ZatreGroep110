@@ -8,7 +8,7 @@ import java.util.List;
 public class GameBord {
     private final Field[][] fields = new Field[15][15];
 
-    public GameBord(Game game) {
+    public GameBord() {
         setFields();
     }
 
