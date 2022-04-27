@@ -15,8 +15,6 @@ import java.io.IOException;
 
 public class RegisterMenu extends BorderPane {
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     private DomainController controller;
     private HomeScreen homeScreen;
 
@@ -24,14 +22,6 @@ public class RegisterMenu extends BorderPane {
         this.controller = controller;
         this.homeScreen = homeScreen;
     }
-=======
-    private final DomainController controller;
-    private final HomeScreen homeScreen;
->>>>>>> Stashed changes
-=======
-    private final DomainController controller;
-    private final HomeScreen homeScreen;
->>>>>>> Stashed changes
 
     public RegisterMenu(HomeScreen homeScreen, DomainController controller) throws IOException {
         this.homeScreen = homeScreen;

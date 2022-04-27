@@ -15,32 +15,17 @@ import java.util.Locale;
 
 public class MainMenu extends BorderPane {
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     private HomeScreen homeScreen;
-=======
-    private final DomainController controller;
-    private final HomeScreen homeScreen;
->>>>>>> Stashed changes
-=======
-    private final DomainController controller;
-    private final HomeScreen homeScreen;
->>>>>>> Stashed changes
-    public Locale[] supportedLanguages = {new Locale("nl"), new Locale(Locale.getDefault().getLanguage())};
     public DomainController domainController;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+    public Locale[] supportedLanguages = {new Locale("nl"), new Locale(Locale.getDefault().getLanguage())};
+
     public MainMenu() throws IOException
     {
         this.homeScreen = homeScreen;
         this.domainController = homeScreen.getDomainController();
     }
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     public MainMenu(HomeScreen homeScreen, DomainController controller) throws IOException {
         this.homeScreen = homeScreen;
         this.domainController = controller;

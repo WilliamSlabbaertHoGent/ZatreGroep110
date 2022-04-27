@@ -22,18 +22,12 @@ public class HomeScreen extends BorderPane {
     private BorderPane selectionMenu;
     private GridPane gameScreen;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     public HomeScreen() {
         this.controller = controller;
     }
     public DomainController getDomainController(){
         return this.controller;
     }
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
     public HomeScreen(DomainController controller) throws IOException {
         this.controller = controller;

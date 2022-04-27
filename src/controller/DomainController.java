@@ -93,7 +93,7 @@ public class DomainController {
     }
 
     public void setActivePlayer() {
-        this.game.setActivePlayer();
+        //this.game.setActivePlayer();
     }
 
     public Game getGame() {
