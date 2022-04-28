@@ -93,6 +93,13 @@ public class Game {
         activePlayer = players.get(0);
     }
 
+    public void setActivePlayer(Player player){
+        activePlayer = player;
+    }
+    public Player getActivePlayer(){
+        return this.activePlayer;
+    }
+
     public GameBord getGameBord() {
         return gameBord;
     }
