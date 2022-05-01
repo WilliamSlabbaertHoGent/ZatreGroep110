@@ -77,7 +77,6 @@ public class DomainController {
         return game.hasMaxPlayers();
     }
 
-
     /*** UC3 ***/
     public void decreaseGamesCountForPlayers() {
         for (Player player: game.getPlayers()) {

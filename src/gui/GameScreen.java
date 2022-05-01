@@ -71,9 +71,11 @@ public class GameScreen extends GridPane {
         }
 
 
-        Button button = new Button("End Turn");
-        add(button,200,100);
-        button.setOnAction(event -> EndTurn());
+        Button endbutton = new Button("End Turn");
+        Button drawbutton = new Button("Draw");
+        add(endbutton,200,100);
+        add(drawbutton,180,80);
+        endbutton.setOnAction(event -> EndTurn());
 
     }
     private void EndTurn(){
@@ -100,6 +102,7 @@ public class GameScreen extends GridPane {
             }
         }
     }
+
     private int indexOfPlayer(String searchActNum, List<Player> tempList) {
         for (int i = 0; i < tempList.size(); i++)
             if (tempList.get(i).getPlayerName() == searchActNum)

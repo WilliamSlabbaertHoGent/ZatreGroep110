@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
 public class FieldLabel extends Label {
-    private static final String defaultStyleBlack = "-fx-background-color: gray;-fx-border-color: black;";
+    private static final String defaultStyleBlack = "-fx-background-image: url(\"/tile_image_one.png\");-fx-background-position: center center;-fx-background-size: 50 50; -fx-border-color: black;";
     private static final String defaultStyleWhite = "-fx-background-color: white;-fx-border-color: black";
     private static final String defaultStyleTransparent = "-fx-background-color: red; -fx-border-color: transparent";
 
