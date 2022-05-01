@@ -15,7 +15,6 @@ public class Player {
     private int yearOfBirth;
     private int gamesCount;
     private ScoreBoard scoreBoard;
-    /*private List<Stone> stoneInventory;*/
 
     /* CLASS CONSTRUCTOR */
     public Player(String playerName, int yearOfBirth) {
@@ -109,6 +108,11 @@ public class Player {
                 Language.getInstance().getResourceBundle(LABEL_RESOURCE).getString("label.gamesCount"),
                 this.getGamesCount()
         );
+    }
+    /*** UC3***/
+    ScoreBoard getScoreBoard()
+    {
+        return this.scoreBoard;
     }
 }
 

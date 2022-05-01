@@ -116,4 +116,5 @@ public class PlayerMapper {
             throw new RuntimeException(exception);
         }
     }
+
 }

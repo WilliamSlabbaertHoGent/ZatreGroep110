@@ -103,4 +103,17 @@ public class Game {
     public GameBord getGameBord() {
         return gameBord;
     }
+
+    public void determineWinner()
+    {
+        int highscore = 0;
+        for(Player player: players)
+        {
+            if(player.getScoreBoard().getTotalScore() > highscore){
+                highscore = player.getScoreBoard().getTotalScore();
+               winner = player;
+            }
+        }
+    }
+
 }

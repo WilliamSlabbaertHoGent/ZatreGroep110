@@ -5,4 +5,5 @@ import java.util.List;
 public class ScoreBoard {
     private List<ScoreRow> scoreRows;
     private int totalScore;
+    public int getTotalScore(){return this.totalScore;}
 }
