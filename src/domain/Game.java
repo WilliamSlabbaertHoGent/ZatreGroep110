@@ -96,6 +96,25 @@ public class Game {
     public void setActivePlayer(Player player){
         activePlayer = player;
     }
+    public void setNextPlayer(){
+        var tempList = this.getPlayers();
+        var tempPlayer = this.getActivePlayer();
+        var index = 0;
+
+        for (int i = 0; i < tempList.size(); i++)
+            if (tempList.get(i).getPlayerName() == tempPlayer.getPlayerName()){
+                index = i;
+            }
+
+        if(index == tempList.size() -1){
+            index = 0;
+        }
+        else{
+            index++;
+        }
+        this.setActivePlayer(tempList.get(index));
+    }
+
     public Player getActivePlayer(){
         return this.activePlayer;
     }

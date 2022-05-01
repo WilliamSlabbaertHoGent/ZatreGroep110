@@ -89,19 +89,8 @@ public class GameScreen extends GridPane {
 
     }
     private void EndTurn(){
-        var tempList = this.domainController.getGame().getPlayers();
-        var tempPlayer = this.domainController.getGame().getActivePlayer();
-        var index = indexOfPlayer(tempPlayer.getPlayerName(),tempList);
-
-        if(index == tempList.size() -1){
-            index = 0;
-        }
-        else{
-            index++;
-        }
-        this.domainController.getGame().setActivePlayer(tempList.get(index));
-        for ( Node node : this.getChildren() )
-        {
+        this.domainController.getGame().setNextPlayer();
+        for ( Node node : this.getChildren() ) {
             if(node instanceof Label){
                 var labelNode = (( Label ) node);
                 if(labelNode.getText() != this.domainController.getGame().getActivePlayer().getPlayerName()){
@@ -116,12 +105,4 @@ public class GameScreen extends GridPane {
         this.homeScreen.showMainMenu();
         this.domainController.startNewGame();
     }
-
-    private int indexOfPlayer(String searchActNum, List<Player> tempList) {
-        for (int i = 0; i < tempList.size(); i++)
-            if (tempList.get(i).getPlayerName() == searchActNum)
-                return i;
-        return -1;
-    }
-
 }
