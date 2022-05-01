@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,9 +74,18 @@ public class GameScreen extends GridPane {
 
         Button endbutton = new Button("End Turn");
         Button drawbutton = new Button("Draw");
+        Button gamequitbutton = new Button("Quit game");
         add(endbutton,200,100);
         add(drawbutton,180,80);
+        add(gamequitbutton,300,80);
         endbutton.setOnAction(event -> EndTurn());
+        gamequitbutton.setOnAction(event -> {
+            try {
+                QuitGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
     private void EndTurn(){
@@ -101,6 +111,10 @@ public class GameScreen extends GridPane {
                 }
             }
         }
+    }
+    public void QuitGame() throws IOException {
+        this.homeScreen.showMainMenu();
+        this.domainController.startNewGame();
     }
 
     private int indexOfPlayer(String searchActNum, List<Player> tempList) {
