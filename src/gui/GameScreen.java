@@ -5,7 +5,9 @@ import domain.Field;
 import domain.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -15,6 +17,7 @@ import javafx.scene.text.FontWeight;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class GameScreen extends GridPane {
     private final DomainController domainController;
@@ -102,6 +105,18 @@ public class GameScreen extends GridPane {
         }
     }
     public void QuitGame() throws IOException {
+        //No language support yet here
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Quit game");
+        alert.setContentText("Are you sure you want to quit ?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            this.homeScreen.showMainMenu();
+            this.domainController.startNewGame();
+        } else {
+            //User clicked cancel in this case
+        }
         this.homeScreen.showMainMenu();
         this.domainController.startNewGame();
     }
