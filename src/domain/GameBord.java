@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
+import static domain.ConstantInterface.*;
 
 public class GameBord {
     private final Field[][] fields = new Field[15][15];
@@ -17,8 +18,8 @@ public class GameBord {
     }
 
     private void setFields() {
-        for (int row = 0; row <= 14; row++) {
-            for (int column = 0; column <= 14; column++) {
+        for (int row = FIRST_COLUMN_ROW; row <= LAST_COLUMN_ROW; row++) {
+            for (int column = FIRST_COLUMN_ROW; column <= LAST_COLUMN_ROW; column++) {
                 fields[row][column] = new Field(Color.WHITE);
             }
         }
@@ -28,25 +29,25 @@ public class GameBord {
     }
 
     private void clearUnneededFields() {
-        for (int column = 0; column <= 14; column++) {
+        for (int column = FIRST_COLUMN_ROW; column <= LAST_COLUMN_ROW; column++) {
             if (column == 4 || column == 5 || column == 6 || column == 8 || column == 9 || column == 10) {
                 continue;
             }
 
-            fields[0][column] = null;
-            fields[14][column] = null;
+            fields[FIRST_COLUMN_ROW][column] = null;
+            fields[LAST_COLUMN_ROW][column] = null;
         }
 
-        fields[0][7] = null;
+        fields[FIRST_COLUMN_ROW][7] = null;
 
-        for (int row = 1; row <= 14; row++) {
+        for (int row = FIRST_COLUMN_ROW + 1; row <= LAST_COLUMN_ROW; row++) {
 
             if (row == 4 || row == 5 || row == 6 || row == 8 || row == 9 || row == 10) {
                 continue;
             }
 
-            fields[row][0] = null;
-            fields[row][14] = null;
+            fields[row][FIRST_COLUMN_ROW] = null;
+            fields[row][LAST_COLUMN_ROW] = null;
         }
     }
 
