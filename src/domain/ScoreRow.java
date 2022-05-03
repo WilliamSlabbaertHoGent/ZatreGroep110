@@ -9,6 +9,7 @@ public class ScoreRow {
     private boolean bonus;
     private int total;
     private int orderCount;
+    public int getTotal(){return this.total;}
 }
 
 
