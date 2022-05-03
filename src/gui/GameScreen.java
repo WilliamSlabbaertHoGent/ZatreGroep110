@@ -114,8 +114,6 @@ public class GameScreen extends GridPane {
         if (result.get() == ButtonType.OK){
             this.homeScreen.showMainMenu();
             this.domainController.startNewGame();
-        } else {
-            //User clicked cancel in this case
         }
     }
 }

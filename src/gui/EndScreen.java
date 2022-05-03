@@ -1,19 +1,15 @@
 package gui;
 
 import controller.DomainController;
-import domain.Field;
 import domain.Player;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,8 +43,6 @@ public class EndScreen extends GridPane {
         if (result.get() == ButtonType.OK){
             this.homeScreen.showMainMenu();
             this.domainController.startNewGame();
-        } else {
-            //User clicked cancel in this case (nothing needs to be done)
         }
     }
     private void addComponents()
