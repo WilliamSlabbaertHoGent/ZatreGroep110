@@ -30,6 +30,10 @@ public class Game {
     }
 
 
+    public List<Player> getPlayersShuffle() {
+        shufflePlayers(); //Shuffle before handing it over to Gamescreen
+        return players;
+    }
     public List<Player> getPlayers() {
         return players;
     }

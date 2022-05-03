@@ -58,7 +58,7 @@ public class GameScreen extends GridPane {
         x = 25;
 
         int index = 0;
-        for (Player player: domainController.getGame().getPlayers()) {
+        for (Player player: domainController.getGame().getPlayersShuffle()) {
             Label label = new Label(player.getPlayerName());
             label.setId(player.getPlayerName() + "Label");
             label.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
