@@ -2,6 +2,8 @@ package domain;
 
 import resources.Language;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,9 +71,11 @@ public class Player {
 
         if (!String.valueOf(yearOfBirth).matches("(19[5-9]\\d|20[0-1]\\d|2020)")) {
             int year = Calendar.getInstance().get(Calendar.YEAR);
+            DecimalFormat decimalFormat = new DecimalFormat();
+            decimalFormat.setGroupingUsed(false);
 
             throw new IllegalArgumentException(
-                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.invalidYearOfBirth", year - 2)
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.invalidYearOfBirth", decimalFormat.format((year - 72)), decimalFormat.format((year - 2)) )
             );
         }
 

@@ -14,4 +14,6 @@ public interface ConstantInterface {
     public final static int TOTAL_FIELDS = 193;
     public final static int BLACK_FIELDS = 34;
     public final static int WHITE_FIELDS = 159;
+    public final static int FIRST_COLUMN_ROW = 0;
+    public final static int LAST_COLUMN_ROW = 14;
 }
