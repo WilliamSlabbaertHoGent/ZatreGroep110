@@ -2,6 +2,7 @@ package gui;
 
 import controller.DomainController;
 import domain.Player;
+import domain.ScoreRow;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -20,12 +21,12 @@ import java.util.Optional;
 public class EndScreen extends GridPane {
     private final DomainController domainController;
     private final HomeScreen homeScreen;
-    private final List<Label> playerList;
+    private final List<Player> playerList;
     private final Player winner;
     public EndScreen(HomeScreen homeScreen, DomainController domainController) throws SQLException {
         this.homeScreen = homeScreen;
         this.domainController = domainController;
-        this.playerList = new ArrayList<Label>();
+        this.playerList = domainController.getGame().getPlayers();
         domainController.getGame().determineWinner();
         this.winner = domainController.getGame().getWinner();
         this.domainController.increaseGamesCount(winner);
@@ -47,6 +48,16 @@ public class EndScreen extends GridPane {
     }
     private void addComponents()
     {
+        //Scoreboards
+        for(Player player : playerList) //Iterate players
+        {
+            for (ScoreRow scoreRow : player.getScoreBoard().getScoreRows()) //Iterate each scorerow per player
+            {
+                //To be done next
+            }
+            player.getScoreBoard().getTotalScore(); //At the end of the rows
+        }
+
         //Winner label (might be replaced by another element later)
         Label label = new Label(winner.getPlayerName() + " Games: " + winner.getGamesCount());
         label.setId(winner.getPlayerName() + "Label");

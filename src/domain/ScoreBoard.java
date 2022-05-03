@@ -15,4 +15,8 @@ public class ScoreBoard {
 
     }
     public int getTotalScore(){return this.totalScore;}
+    public List<ScoreRow> getScoreRows()
+    {
+        return this.scoreRows;
+    }
 }

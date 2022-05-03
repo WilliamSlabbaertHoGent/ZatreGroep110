@@ -114,7 +114,7 @@ public class Player {
         );
     }
     /*** UC3***/
-    ScoreBoard getScoreBoard()
+    public ScoreBoard getScoreBoard()
     {
         return this.scoreBoard;
     }
