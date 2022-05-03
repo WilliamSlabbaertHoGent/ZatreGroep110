@@ -126,7 +126,7 @@ public class Game {
     public GameBord getGameBord() {
         return gameBord;
     }
-
+    public Player getWinner() {return this.winner;}
     public void determineWinner()
     {
         int highscore = 0;
