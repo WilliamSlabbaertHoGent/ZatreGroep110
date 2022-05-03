@@ -117,7 +117,5 @@ public class GameScreen extends GridPane {
         } else {
             //User clicked cancel in this case
         }
-        this.homeScreen.showMainMenu();
-        this.domainController.startNewGame();
     }
 }

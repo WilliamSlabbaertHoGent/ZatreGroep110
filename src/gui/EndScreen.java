@@ -40,18 +40,16 @@ public class EndScreen extends GridPane {
     public void QuitGame() throws IOException {
         //No language support yet here
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Quit game");
-        alert.setContentText("Are you sure you want to quit ?");
+        alert.setHeaderText("Exit game");
+        alert.setContentText("Are you sure you want to exit ?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             this.homeScreen.showMainMenu();
             this.domainController.startNewGame();
         } else {
-            //User clicked cancel in this case
+            //User clicked cancel in this case (nothing needs to be done)
         }
-        this.homeScreen.showMainMenu();
-        this.domainController.startNewGame();
     }
     private void addComponents()
     {
@@ -61,11 +59,11 @@ public class EndScreen extends GridPane {
         label.setFont(Font.font("Tahoma", FontWeight.BOLD, 28));
         label.setAlignment(Pos.CENTER);
         add(label,150,150);
-        //Gamequit button
-        Button gamequitbutton = new Button("Quit game");
+        //Exit button
+        Button exitbutton = new Button("Exit");
 
-        add(gamequitbutton,150,80);
-        gamequitbutton.setOnAction(event -> {
+        add(exitbutton,150,80);
+        exitbutton.setOnAction(event -> {
             try {
                 QuitGame();
             } catch (IOException e) {
