@@ -4,14 +4,14 @@ import controller.DomainController;
 import domain.Player;
 import domain.ScoreRow;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +49,47 @@ public class EndScreen extends GridPane {
     private void addComponents()
     {
         //Scoreboards
+        ArrayList<TableView> scoreBoards = new ArrayList<TableView>();
         for(Player player : playerList) //Iterate players
         {
+            TableView tempScoreBoard = new TableView(); //reset
+            TableColumn<Integer, ScoreRow> cl1 = new TableColumn<>("Ten score");
+            cl1.setCellValueFactory(new PropertyValueFactory<>("tenScore"));
+            TableColumn<Integer, ScoreRow> cl2 = new TableColumn<>("Eleven score");
+            cl2.setCellValueFactory(new PropertyValueFactory<>("elevenScore"));
+            TableColumn<Integer, ScoreRow> cl3 = new TableColumn<>("Twelve score");
+            cl3.setCellValueFactory(new PropertyValueFactory<>("twelveScore"));
+            TableColumn<Integer, ScoreRow> cl4 = new TableColumn<>("Bonus score");
+            cl4.setCellValueFactory(new PropertyValueFactory<>("bonus"));
+            TableColumn<Integer, ScoreRow> cl5 = new TableColumn<>("Doublebonus score");
+            cl5.setCellValueFactory(new PropertyValueFactory<>("doubleBonus"));
+            TableColumn<Integer, ScoreRow> cl6 = new TableColumn<>("Totalbonus score");
+            cl6.setCellValueFactory(new PropertyValueFactory<>("totalBonusScore"));
+            TableColumn<Integer, ScoreRow> cl7 = new TableColumn<>("Total score");
+            cl7.setCellValueFactory(new PropertyValueFactory<>("total"));
+            tempScoreBoard.getColumns().add(cl1);
+            tempScoreBoard.getColumns().add(cl2);
+            tempScoreBoard.getColumns().add(cl3);
+            tempScoreBoard.getColumns().add(cl4);
+            tempScoreBoard.getColumns().add(cl5);
+            tempScoreBoard.getColumns().add(cl6);
+            tempScoreBoard.getColumns().add(cl7);
             for (ScoreRow scoreRow : player.getScoreBoard().getScoreRows()) //Iterate each scorerow per player
             {
-                //To be done next
+                tempScoreBoard.getItems().add(scoreRow);
+
             }
-            player.getScoreBoard().getTotalScore(); //At the end of the rows
+            scoreBoards.add(tempScoreBoard);
         }
+        for(TableView tempTable : scoreBoards)
+        {
+            VBox vbox = new VBox();
+            vbox.getChildren().addAll(tempTable);
+            vbox.setSpacing(10);
+            vbox.setAlignment(Pos.CENTER);
+            add(vbox,0,0);
+        }
+
 
         //Winner label (might be replaced by another element later)
         Label label = new Label(winner.getPlayerName() + " Games: " + winner.getGamesCount());
