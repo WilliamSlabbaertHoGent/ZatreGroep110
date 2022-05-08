@@ -3,10 +3,12 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import domain.Game;
 import domain.Player;
 import domain.PlayerRepository;
+import domain.Tile;
 import exceptions.NoRegisteredPlayerException;
 import resources.Language;
 import static domain.ConstantInterface.*;
@@ -60,6 +62,7 @@ public class DomainController {
         return playerInfo;
     }
 
+
     /*** UC2 ***/
     public void selectPlayer(String playerName, int yearOfBirth) {
         if (playerName == null || playerName.isBlank()) {
@@ -109,6 +112,18 @@ public class DomainController {
         decreaseGamesCountForPlayers();
         shufflePlayers();
         setActivePlayer();
+    }
+    public List<Tile> RandomTilesShuffle(List<Tile> playerInventory,int amount){
+        List<Tile> list = this.getGame().getGameInventory().getTiles();
+        list.addAll(playerInventory);
+        playerInventory = new ArrayList<Tile>(){};
+        Random random = new Random();
+        for (int i = 0; i < amount; i++){
+            int int_random = random.nextInt(list.size()-1);
+            playerInventory.add(list.get(int_random));
+            list.remove(list.get(int_random));
+        }
+        return playerInventory;
     }
 
 }

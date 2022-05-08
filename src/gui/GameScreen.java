@@ -3,6 +3,8 @@ package gui;
 import controller.DomainController;
 import domain.Field;
 import domain.Player;
+import domain.Tile;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -10,24 +12,32 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class GameScreen extends GridPane {
     private final DomainController domainController;
     private final HomeScreen homeScreen;
     private final List<Label> playerList;
+    private List<StackPane> tileStackPaneList;
+    private List<Tile> playerInventory;
 
     public GameScreen(HomeScreen homeScreen, DomainController domainController) {
         this.homeScreen = homeScreen;
         this.domainController = domainController;
         this.playerList = new ArrayList<Label>();
+        this.playerInventory = new ArrayList<>();
+        this.tileStackPaneList = new ArrayList<>();
 
         setAlignment(Pos.CENTER);
         addComponents();
@@ -76,11 +86,17 @@ public class GameScreen extends GridPane {
 
 
         Button endbutton = new Button("End Turn");
+        Button logbutton = new Button("Log");
         Button drawbutton = new Button("Draw");
         Button gamequitbutton = new Button("Quit game");
-        add(endbutton,200,100);
+        add(endbutton,220,80);
         add(drawbutton,180,80);
-        add(gamequitbutton,300,80);
+        add(logbutton,10,80);
+        add(gamequitbutton,360,80);
+
+
+        RandomStonesAdd(3);
+        logbutton.setOnAction(event-> LogSys());
         endbutton.setOnAction(event -> EndTurn());
         gamequitbutton.setOnAction(event -> {
             try {
@@ -92,7 +108,9 @@ public class GameScreen extends GridPane {
 
     }
     private void EndTurn(){
+
         this.domainController.getGame().setNextPlayer();
+        RandomStonesAdd(3);
         for ( Node node : this.getChildren() ) {
             if(node instanceof Label){
                 var labelNode = (( Label ) node);
@@ -102,6 +120,15 @@ public class GameScreen extends GridPane {
                     labelNode.setTextFill(Color.RED);
                 }
             }
+        }
+        RandomStonesAdd(2);
+    }
+    private void LogSys(){
+        List<Tile> list = this.domainController.getGame().getGameInventory().getTiles();
+        System.out.println("Game :" + list.size());
+        System.out.println("player :" + playerInventory.size());
+        for (Tile item: playerInventory) {
+            System.out.println(item.getValue());
         }
     }
     public void QuitGame() throws IOException {
@@ -115,5 +142,25 @@ public class GameScreen extends GridPane {
             this.homeScreen.showMainMenu();
             this.domainController.startNewGame();
         }
+    }
+    private void RandomStonesAdd(int amount){
+        this.playerInventory = this.domainController.RandomTilesShuffle(this.playerInventory,amount);
+
+        int x = 180;
+        this.getChildren().removeAll(this.tileStackPaneList);
+      
+        this.tileStackPaneList = new ArrayList<>();
+        for(Tile item : this.playerInventory){
+            StackPane stack = new StackPane();
+            Rectangle Tile = new Rectangle(50,50);
+            Tile.setStroke(Color.BLACK);
+            Tile.setFill(Color.WHITE);
+            stack.getChildren().addAll(Tile,new Text(String.valueOf(item.getValue())));
+            stack.setPadding(new Insets(5,5,5,5));
+            add(stack, x, 15);
+            this.tileStackPaneList.add(stack);
+            x += 10;
+        }
+
     }
 }

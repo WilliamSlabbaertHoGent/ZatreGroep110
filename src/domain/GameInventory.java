@@ -33,5 +33,7 @@ public class GameInventory {
         }
     }
 
-
+    public List<Tile> getTiles() {
+        return Tiles;
+    }
 }

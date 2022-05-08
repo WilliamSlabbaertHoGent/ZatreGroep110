@@ -122,6 +122,7 @@ public class Game {
     public Player getActivePlayer(){
         return this.activePlayer;
     }
+    public GameInventory getGameInventory() { return this.gameInventory; }
 
     public GameBord getGameBord() {
         return gameBord;
