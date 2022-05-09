@@ -1,6 +1,8 @@
 package domain;
 
+import exceptions.InvalidTilePlacementException;
 import javafx.scene.paint.Color;
+import resources.Language;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +114,9 @@ public class GameBord {
     public final void setFieldValue(int row, int column, int value, boolean firstTurn, boolean firstStone) {
         if (firstStone) {
             if (row != 7 || column != 7) {
-                throw new RuntimeException("First stone must be placed in the middle!");
+                throw new InvalidTilePlacementException(
+                        Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.firstStoneMiddle")
+                );
             }
         }
 
@@ -129,20 +133,22 @@ public class GameBord {
             }
 
             if (!validField) {
-                throw new RuntimeException("Placed stones must touch other stones!");
+                throw new InvalidTilePlacementException(
+                        Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.touchOther")
+                );
             }
 
-            if (isHorizontalScoreHigherThan12(row, column, value)) {
-                throw new RuntimeException("Horizontal row will result in number larger than 12");
-            }
-
-            if (isVerticalScoreHigherThan12(row, column, value)) {
-                throw new RuntimeException("Vertical row will result in number larger than 12");
+            if (isHorizontalScoreHigherThan12(row, column, value) || isVerticalScoreHigherThan12(row, column, value)) {
+                throw new InvalidTilePlacementException(
+                        Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.moreThanMaxScore", MAX_POINTS)
+                );
             }
 
             if (fields[row][column].getColor() == Color.BLACK){
                 if (!isBlackFieldHorizontallyAllowed(row, column, value) && !isBlackFieldVerticallyAllowed(row, column, value)) {
-                    throw new RuntimeException("To play a black field, you must make a horizontal or vertical score between 10 and 12 including.");
+                    throw new InvalidTilePlacementException(
+                            Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.invalidBlackField", MIN_BLACK_FIELD_POINTS, MAX_POINTS)
+                    );
                 }
             }
         }
@@ -158,7 +164,9 @@ public class GameBord {
             }
 
             if (!validField) {
-                throw new RuntimeException("Stone must touch minimum 1 other stone not played by you this round!");
+                throw new InvalidTilePlacementException(
+                        Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.touchOtherNotByYourself")
+                );
             }
         }
 

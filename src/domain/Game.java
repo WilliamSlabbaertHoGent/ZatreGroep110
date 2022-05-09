@@ -173,7 +173,5 @@ public class Game {
         } catch (RuntimeException exception) {
             throw new RuntimeException(exception.getMessage());
         }
-
-
     }
 }
