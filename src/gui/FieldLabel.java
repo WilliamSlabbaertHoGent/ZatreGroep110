@@ -9,11 +9,16 @@ public class FieldLabel extends Label {
     private static final String defaultStyleWhite = "-fx-background-color: white;-fx-border-color: black";
     private static final String defaultStyleTransparent = "-fx-background-color: red; -fx-border-color: transparent";
 
-    public FieldLabel(Color color) {
+    private int row;
+    private int column;
+
+    public FieldLabel(Color color, int row, int column) {
         setAlignment(Pos.CENTER);
         setStyle(getStyle(color));
         setMinSize(50,50);
         setMaxSize(50,50);
+        setRow(row);
+        setColumn(column);
     }
 
     private String getStyle(Color color) {
@@ -26,5 +31,21 @@ public class FieldLabel extends Label {
         }
 
         return null;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    private void setRow(int row) {
+        this.row = row;
+    }
+
+     int getColumn() {
+        return column;
+    }
+
+    private void setColumn(int column) {
+        this.column = column;
     }
 }

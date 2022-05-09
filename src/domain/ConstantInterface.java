@@ -16,4 +16,6 @@ public interface ConstantInterface {
     public final static int WHITE_FIELDS = 159;
     public final static int FIRST_COLUMN_ROW = 0;
     public final static int LAST_COLUMN_ROW = 14;
+    public final static int MAX_POINTS = 12;
+    public final static int MIN_BLACK_FIELD_POINTS = 10;
 }

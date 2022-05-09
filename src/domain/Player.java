@@ -27,6 +27,7 @@ public class Player {
         this.setPlayerName(playerName);
         this.setYearOfBirth(yearOfBirth);
         this.setGamesCount(gamesCount);
+        scoreBoard = new ScoreBoard();
     }
 
     public String getPlayerName() {
@@ -118,6 +119,11 @@ public class Player {
     {
         return this.scoreBoard;
     }
+
+    public void addScore(int amountTenScores, int amountElevenScores, int amountTwelveScores, int amountDoubleScores) {
+        scoreBoard.addScores(amountTenScores, amountElevenScores, amountTwelveScores, amountDoubleScores);
+    }
+
 }
 
 

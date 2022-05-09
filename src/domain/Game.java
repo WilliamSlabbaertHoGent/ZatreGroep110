@@ -2,6 +2,8 @@ package domain;
 
 import exceptions.PlayerNotFoundException;
 import exceptions.PlayerSelectedException;
+import gui.FieldLabel;
+import javafx.scene.shape.Rectangle;
 import resources.Language;
 import static domain.ConstantInterface.*;
 
@@ -16,6 +18,7 @@ public class Game {
     private Player winner;
     private Player activePlayer;
     private boolean firstTurn = true; // TK - TO DETERMINE TILES DRAWN
+    private boolean firstStone = true;
 
     public Game() {
         players = new ArrayList<>();
@@ -101,8 +104,16 @@ public class Game {
         activePlayer = player;
     }
     public void setNextPlayer(){
+        if (gameInventory.getTiles().size() == 0) {
+            determineWinner();
+        }
+
         var tempList = this.getPlayers();
         var tempPlayer = this.getActivePlayer();
+
+        gameBord.calculateScores();
+        getActivePlayer().addScore(gameBord.getAmountTenScoresCurrentRound(), gameBord.getAmountElevenScoresCurrentRound(), gameBord.getAmountTwelveScoresCurrentRound(), gameBord.getAmountDoubleScores());
+
         var index = 0;
 
         for (int i = 0; i < tempList.size(); i++)
@@ -117,6 +128,12 @@ public class Game {
             index++;
         }
         this.setActivePlayer(tempList.get(index));
+
+        if (firstTurn) {
+            firstTurn = false;
+        }
+
+        gameBord.resetRound();
     }
 
     public Player getActivePlayer(){
@@ -140,4 +157,23 @@ public class Game {
         }
     }
 
+    public void setFieldValue(int row, int column, int value) {
+        try {
+            gameBord.setFieldValue(row, column, value, firstTurn, firstStone);
+            for (Tile tile: gameInventory.getTiles()) {
+                if (tile.getValue() == value) {
+                    gameInventory.getTiles().remove(tile);
+                    break;
+                }
+            }
+
+            if (firstStone) {
+                firstStone = false;
+            }
+        } catch (RuntimeException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+
+
+    }
 }

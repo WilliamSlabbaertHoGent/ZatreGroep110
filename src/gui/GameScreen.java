@@ -3,7 +3,9 @@ package gui;
 import controller.DomainController;
 import domain.Field;
 import domain.Player;
+import domain.ScoreRow;
 import domain.Tile;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -11,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -31,6 +34,12 @@ public class GameScreen extends GridPane {
     private final List<Label> playerList;
     private List<StackPane> tileStackPaneList;
     private List<Tile> playerInventory;
+    private List<FieldLabel> playFields;
+
+    private int selectedTileValue;
+    private Rectangle selectedTile;
+    private Text selectedText;
+    private List<FieldLabel> playedFields;
 
     public GameScreen(HomeScreen homeScreen, DomainController domainController) {
         this.homeScreen = homeScreen;
@@ -38,6 +47,8 @@ public class GameScreen extends GridPane {
         this.playerList = new ArrayList<Label>();
         this.playerInventory = new ArrayList<>();
         this.tileStackPaneList = new ArrayList<>();
+        this.playFields = new ArrayList<>();
+        playedFields = new ArrayList<>();
 
         setAlignment(Pos.CENTER);
         addComponents();
@@ -59,7 +70,25 @@ public class GameScreen extends GridPane {
             int y = 0;
             for (Field field: arr) {
                 if (field != null) {
-                    FieldLabel playField = new FieldLabel(field.getColor());
+                    FieldLabel playField = new FieldLabel(field.getColor(), x, y);
+                    playField.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            try {
+                                domainController.setFieldValue(playField.getRow(), playField.getColumn(), selectedTileValue);
+                                playField.setText(String.valueOf(selectedTileValue));
+                                for (StackPane stack: tileStackPaneList) {
+                                    if (stack.getChildren().contains(selectedTile) && stack.getChildren().contains(selectedText)){
+                                        stack.getChildren().remove(selectedTile);
+                                        stack.getChildren().remove(selectedText);
+                                    }
+                                }
+                            } catch (RuntimeException exception) {
+                                triggerAlert(exception.getMessage());
+                            }
+                        }
+                    });
+                    playFields.add(playField);
                     add(playField, y, x);
                 }
                 y++;
@@ -109,27 +138,39 @@ public class GameScreen extends GridPane {
     }
     private void EndTurn(){
 
-        this.domainController.getGame().setNextPlayer();
-        RandomStonesAdd(3);
-        for ( Node node : this.getChildren() ) {
-            if(node instanceof Label){
-                var labelNode = (( Label ) node);
-                if(labelNode.getText() != this.domainController.getGame().getActivePlayer().getPlayerName()){
-                    labelNode.setTextFill(Color.BLACK);
-                }else{
-                    labelNode.setTextFill(Color.RED);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("End turn");
+        alert.setContentText("Are you sure you want to end your turn?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            this.domainController.getGame().setNextPlayer();
+            RandomStonesAdd(3);
+            for ( Node node : this.getChildren() ) {
+                if(node instanceof Label){
+                    var labelNode = (( Label ) node);
+                    if(labelNode.getText() != this.domainController.getGame().getActivePlayer().getPlayerName()){
+                        labelNode.setTextFill(Color.BLACK);
+                    }else{
+                        labelNode.setTextFill(Color.RED);
+                    }
                 }
             }
+            RandomStonesAdd(2);
         }
-        RandomStonesAdd(2);
     }
     private void LogSys(){
-        List<Tile> list = this.domainController.getGame().getGameInventory().getTiles();
-        System.out.println("Game :" + list.size());
-        System.out.println("player :" + playerInventory.size());
-        for (Tile item: playerInventory) {
-            System.out.println(item.getValue());
+        for (ScoreRow scoreRow: domainController.getGame().getActivePlayer().getScoreBoard().getScoreRows()) {
+            System.out.println("double score: " + (scoreRow.isDoubleBonus() ? "yes" : "no"));
+            System.out.println("10 score: " + (scoreRow.isTenScore() ? "yes" : "no"));
+            System.out.println("11 score: " + (scoreRow.isElevenScore() ? "yes" : "no"));
+            System.out.println("12 score: " + (scoreRow.isTwelveScore() ? "yes" : "no"));
+            System.out.println("bonus: " + (scoreRow.getBonus()));
+            System.out.println("total: " + scoreRow.getTotal());
         }
+
+        System.out.println(domainController.getGame().getGameBord().getLog());
+
     }
     public void QuitGame() throws IOException {
         //No language support yet here
@@ -144,7 +185,7 @@ public class GameScreen extends GridPane {
         }
     }
     private void RandomStonesAdd(int amount){
-        this.playerInventory = this.domainController.RandomTilesShuffle(this.playerInventory,amount);
+        this.playerInventory = this.domainController.RandomTilesShuffle(this.playerInventory, amount);
 
         int x = 180;
         this.getChildren().removeAll(this.tileStackPaneList);
@@ -152,15 +193,69 @@ public class GameScreen extends GridPane {
         this.tileStackPaneList = new ArrayList<>();
         for(Tile item : this.playerInventory){
             StackPane stack = new StackPane();
-            Rectangle Tile = new Rectangle(50,50);
-            Tile.setStroke(Color.BLACK);
-            Tile.setFill(Color.WHITE);
-            stack.getChildren().addAll(Tile,new Text(String.valueOf(item.getValue())));
+            Rectangle tile = new Rectangle(50,50);
+            Text text = new Text(String.valueOf(item.getValue()));
+            tile.setStroke(Color.BLACK);
+            tile.setFill(Color.WHITE);
+            tile.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (tile.getStroke() == Color.WHITE && tile.getFill() == Color.RED) {
+                        tile.setStroke(Color.BLACK);
+                        selectedTile = null;
+                        selectedText = null;
+                    } else {
+                        // deselect other selected stones
+                        if (selectedTile != null) {
+                            selectedTile.setFill(Color.WHITE);
+                        }
+
+                        tile.setFill(Color.RED);
+                        selectedTile = tile;
+                        selectedText = text;
+                    }
+                    setSelectedTileValue(item.getValue());
+                }
+            });
+            stack.getChildren().addAll(tile,text);
             stack.setPadding(new Insets(5,5,5,5));
             add(stack, x, 15);
             this.tileStackPaneList.add(stack);
             x += 10;
         }
+    }
 
+    private void setSelectedTileValue(int value) {
+        // If already selected, deselect
+        if (selectedTileValue == value) {
+            selectedTileValue = 0;
+            return;
+        }
+
+        selectedTileValue = value;
+    }
+
+    private boolean validMove(FieldLabel selectedField) {
+        if (selectedTile == null && selectedTileValue == 0) {
+            triggerAlert("Please select a Stone.");
+            return false;
+        }
+
+        if (!selectedField.getText().isEmpty()) {
+            triggerAlert("Field already has a stone.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void triggerAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(text);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            alert.close();
+        }
     }
 }

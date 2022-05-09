@@ -126,4 +126,9 @@ public class DomainController {
         return playerInventory;
     }
 
+
+    /** UC4 **/
+    public void setFieldValue(int row, int column, int value) {
+        game.setFieldValue(row, column, value);
+    }
 }
