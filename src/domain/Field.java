@@ -1,6 +1,11 @@
 package domain;
 
+import exceptions.NoTileSelectedException;
+import exceptions.TileOccupiedException;
 import javafx.scene.paint.Color;
+import resources.Language;
+import static domain.ConstantInterface.*;
+
 
 public class Field {
     private Color color;
@@ -44,11 +49,15 @@ public class Field {
 
     public final void setTileValue(int value) {
         if (value == 0) {
-            throw new RuntimeException("Please select a tile!");
+            throw new NoTileSelectedException(
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.selectTile")
+            );
         }
 
         if (tileValue != 0) {
-            throw new RuntimeException("Tile already has a value!");
+            throw new TileOccupiedException(
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.tileOccupied")
+            );
         }
 
         tileValue = value;
