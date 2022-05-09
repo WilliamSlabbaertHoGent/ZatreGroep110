@@ -26,10 +26,6 @@ public class ScoreBoard {
     }
 
     public void addScores(int amountTenScores, int amountElevenScores, int amountTwelveScores, int amountDoubleScores) {
-        if (scoreRows.size() == 0) {
-            this.scoreRows.add(new ScoreRow(false, false, false, getBonusPoints(), false));
-        }
-
         boolean match = false;
         // add Ten Scores
         for (int x = amountTenScores; x > 0; x--) {
