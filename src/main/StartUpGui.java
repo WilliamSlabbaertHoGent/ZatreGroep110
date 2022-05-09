@@ -19,7 +19,7 @@ public class StartUpGui extends Application {
         this.mainStage = mainStage;
         this.mainStage.setTitle("Zatre Game");
         Scene scene = new Scene(new HomeScreen(controller));
-        mainStage.setHeight(1400);
+        mainStage.setHeight(1000);
         mainStage.setWidth(1900);
         mainStage.setResizable(false);
         mainStage.setScene(scene);

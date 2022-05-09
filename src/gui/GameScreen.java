@@ -40,6 +40,7 @@ public class GameScreen extends GridPane {
     private Rectangle selectedTile;
     private Text selectedText;
     private List<FieldLabel> playedFields;
+    private List<Label> scoreRowList;
 
     public GameScreen(HomeScreen homeScreen, DomainController domainController) {
         this.homeScreen = homeScreen;
@@ -49,6 +50,7 @@ public class GameScreen extends GridPane {
         this.tileStackPaneList = new ArrayList<>();
         this.playFields = new ArrayList<>();
         playedFields = new ArrayList<>();
+        this.scoreRowList = new ArrayList<>();
 
         setAlignment(Pos.CENTER);
         addComponents();
@@ -134,6 +136,7 @@ public class GameScreen extends GridPane {
                 e.printStackTrace();
             }
         });
+        addScoreBoard();
 
     }
     private void EndTurn(){
@@ -158,6 +161,7 @@ public class GameScreen extends GridPane {
             }
             RandomStonesAdd(2);
         }
+        addScoreBoard();
     }
     private void LogSys(){
         for (ScoreRow scoreRow: domainController.getGame().getActivePlayer().getScoreBoard().getScoreRows()) {
@@ -172,7 +176,7 @@ public class GameScreen extends GridPane {
         System.out.println(domainController.getGame().getGameBord().getLog());
 
     }
-    public void QuitGame() throws IOException {
+    private void QuitGame() throws IOException {
         //No language support yet here
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Quit game");
@@ -256,6 +260,44 @@ public class GameScreen extends GridPane {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             alert.close();
+        }
+    }
+    private void addScoreBoard(){
+        var x = 5;
+        var y = 90;
+        for (var node: this.getChildren()) {
+            if(node instanceof Label){
+                if(this.scoreRowList.contains((Label) node)){
+                    node.setVisible(false);
+                }
+            }
+        }
+        this.scoreRowList = new ArrayList<>();
+        for (var scoreRow: domainController.getGame().getActivePlayer().getScoreBoard().getScoreRows()) {
+            var name = new Label(domainController.getGame().getActivePlayer().getPlayerName()+ " => ");
+            var doubleS = new Label("double score: " + (scoreRow.isDoubleBonus() ? "yes" : "no") + " | ");
+            var tenS = new Label("10 score: " + (scoreRow.isTenScore() ? "yes" : "no") + " | ");
+            var elevS = new Label("11 score: " + (scoreRow.isElevenScore() ? "yes" : "no") + " | ");
+            var twelS = new Label("12 score: " + (scoreRow.isTwelveScore() ? "yes" : "no") + " | ");
+            var bonus = new Label("bonus: " + (scoreRow.getBonus()) + " | ");
+            var total = new Label("total: " + scoreRow.getTotal() + " | ");
+            this.scoreRowList.add(name);
+            this.scoreRowList.add(doubleS);
+            this.scoreRowList.add(tenS);
+            this.scoreRowList.add(elevS);
+            this.scoreRowList.add(twelS);
+            this.scoreRowList.add(bonus);
+            this.scoreRowList.add(total);
+
+            add(name,y,x);
+            add(doubleS,y + 1,x);
+            add(tenS,y +2,x);
+            add(elevS,y+3,x);
+            add(twelS,y+4,x);
+            add(bonus,y+5,x);
+            add(total,y+6,x);
+            x += 1;
+            y += 1;
         }
     }
 }
