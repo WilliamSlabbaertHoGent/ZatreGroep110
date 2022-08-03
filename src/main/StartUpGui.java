@@ -1,4 +1,5 @@
 package main;
+
 import controller.DomainController;
 import gui.HomeScreen;
 import javafx.application.Application;
@@ -10,6 +11,10 @@ public class StartUpGui extends Application {
 
     private Stage mainStage;
     private DomainController controller;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage mainStage) throws Exception {
@@ -24,9 +29,5 @@ public class StartUpGui extends Application {
         mainStage.setResizable(false);
         mainStage.setScene(scene);
         mainStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

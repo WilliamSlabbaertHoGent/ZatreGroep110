@@ -6,7 +6,7 @@ import resources.Language;
 
 import java.sql.SQLException;
 
-import static domain.ConstantInterface.*;
+import static domain.ConstantInterface.EXCEPTION_RESOURCE;
 
 public class PlayerRepository {
     private final PlayerMapper playerMapper;

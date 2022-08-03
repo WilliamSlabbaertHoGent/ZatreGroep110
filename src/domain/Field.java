@@ -4,7 +4,8 @@ import exceptions.NoTileSelectedException;
 import exceptions.TileOccupiedException;
 import javafx.scene.paint.Color;
 import resources.Language;
-import static domain.ConstantInterface.*;
+
+import static domain.ConstantInterface.EXCEPTION_RESOURCE;
 
 
 public class Field {

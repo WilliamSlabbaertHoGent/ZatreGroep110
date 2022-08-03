@@ -2,12 +2,9 @@ package domain;
 
 import resources.Language;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.Year;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import static domain.ConstantInterface.*;
 
@@ -41,8 +38,7 @@ public class Player {
             );
         }
 
-        if (!playerName.matches("[a-zA-Z0-9]{1,15}"))
-        {
+        if (!playerName.matches("[a-zA-Z0-9]{1,15}")) {
             throw new IllegalArgumentException(
                     Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.numericOnly")
             );
@@ -76,7 +72,7 @@ public class Player {
             decimalFormat.setGroupingUsed(false);
 
             throw new IllegalArgumentException(
-                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.invalidYearOfBirth", decimalFormat.format((year - 72)), decimalFormat.format((year - 2)) )
+                    Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.invalidYearOfBirth", decimalFormat.format((year - 72)), decimalFormat.format((year - 2)))
             );
         }
 
@@ -114,9 +110,9 @@ public class Player {
                 this.getGamesCount()
         );
     }
+
     /*** UC3***/
-    public ScoreBoard getScoreBoard()
-    {
+    public ScoreBoard getScoreBoard() {
         return this.scoreBoard;
     }
 

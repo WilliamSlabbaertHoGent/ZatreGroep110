@@ -2,14 +2,14 @@ package domain;
 
 import exceptions.PlayerNotFoundException;
 import exceptions.PlayerSelectedException;
-import gui.FieldLabel;
-import javafx.scene.shape.Rectangle;
 import resources.Language;
-import static domain.ConstantInterface.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
+
+import static domain.ConstantInterface.EXCEPTION_RESOURCE;
+import static domain.ConstantInterface.MAX_PLAYERS;
 
 public class Game {
     public List<Player> players;
@@ -37,13 +37,14 @@ public class Game {
         shufflePlayers(); //Shuffle before handing it over to Gamescreen
         return players;
     }
+
     public List<Player> getPlayers() {
         return players;
     }
 
     public List<List<String>> getAllSelectedPlayers() {
         List<List<String>> playerInfo = new ArrayList<>();
-        for (Player player: this.players) {
+        for (Player player : this.players) {
             List<String> singlePlayerInfo = new ArrayList<>();
             singlePlayerInfo.add(player.toString());
             playerInfo.add(singlePlayerInfo);
@@ -64,7 +65,7 @@ public class Game {
 //            throw new PlayerSelectedException(String.format("Player with player name '%s' and year of birth '%d' has already been selected.", player.getPlayerName(), player.getYearOfBirth()));
 //        }
 
-        for (Player selectedPlayer: this.players) {
+        for (Player selectedPlayer : this.players) {
             if (selectedPlayer.getPlayerName().equals(player.getPlayerName()) && selectedPlayer.getYearOfBirth() == player.getYearOfBirth()) {
                 throw new PlayerSelectedException(
                         Language.getInstance().getResourceBundle(EXCEPTION_RESOURCE).getString("exception.playerAlreadySelected")
@@ -100,10 +101,7 @@ public class Game {
         activePlayer = players.get(0);
     }
 
-    public void setActivePlayer(Player player){
-        activePlayer = player;
-    }
-    public void setNextPlayer(){
+    public void setNextPlayer() {
         if (gameInventory.getTiles().size() == 0) {
             determineWinner();
         }
@@ -117,14 +115,13 @@ public class Game {
         var index = 0;
 
         for (int i = 0; i < tempList.size(); i++)
-            if (tempList.get(i).getPlayerName() == tempPlayer.getPlayerName()){
+            if (tempList.get(i).getPlayerName() == tempPlayer.getPlayerName()) {
                 index = i;
             }
 
-        if(index == tempList.size() -1){
+        if (index == tempList.size() - 1) {
             index = 0;
-        }
-        else{
+        } else {
             index++;
         }
         this.setActivePlayer(tempList.get(index));
@@ -136,23 +133,32 @@ public class Game {
         gameBord.resetRound();
     }
 
-    public Player getActivePlayer(){
+    public Player getActivePlayer() {
         return this.activePlayer;
     }
-    public GameInventory getGameInventory() { return this.gameInventory; }
+
+    public void setActivePlayer(Player player) {
+        activePlayer = player;
+    }
+
+    public GameInventory getGameInventory() {
+        return this.gameInventory;
+    }
 
     public GameBord getGameBord() {
         return gameBord;
     }
-    public Player getWinner() {return this.winner;}
-    public void determineWinner()
-    {
+
+    public Player getWinner() {
+        return this.winner;
+    }
+
+    public void determineWinner() {
         int highscore = 0;
-        for(Player player: players)
-        {
-            if(player.getScoreBoard().getTotalScore() > highscore){
+        for (Player player : players) {
+            if (player.getScoreBoard().getTotalScore() > highscore) {
                 highscore = player.getScoreBoard().getTotalScore();
-               winner = player;
+                winner = player;
             }
         }
     }
@@ -160,7 +166,7 @@ public class Game {
     public void setFieldValue(int row, int column, int value) {
         try {
             gameBord.setFieldValue(row, column, value, firstTurn, firstStone);
-            for (Tile tile: gameInventory.getTiles()) {
+            for (Tile tile : gameInventory.getTiles()) {
                 if (tile.getValue() == value) {
                     gameInventory.getTiles().remove(tile);
                     break;

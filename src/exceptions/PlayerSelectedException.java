@@ -1,6 +1,6 @@
 package exceptions;
 
-public class PlayerSelectedException extends RuntimeException{
+public class PlayerSelectedException extends RuntimeException {
     public PlayerSelectedException() {
     }
 

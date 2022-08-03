@@ -1,10 +1,8 @@
 package gui;
 
 import controller.DomainController;
-
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -15,13 +13,13 @@ import java.util.Locale;
 
 public class MainMenu extends BorderPane {
 
-    private HomeScreen homeScreen;
     public DomainController domainController;
-
     public Locale[] supportedLanguages = {new Locale("nl"), new Locale(Locale.getDefault().getLanguage())};
+    public Label languageLabel;
+    public ComboBox languageComboBox;
+    private HomeScreen homeScreen;
 
-    public MainMenu() throws IOException
-    {
+    public MainMenu() throws IOException {
         this.homeScreen = homeScreen;
         this.domainController = homeScreen.getDomainController();
     }
@@ -42,9 +40,6 @@ public class MainMenu extends BorderPane {
     public void showGameScreen() throws IOException {
         homeScreen.showGameScreen();
     }
-
-    public Label languageLabel;
-    public ComboBox languageComboBox;
 
     public void getLanguageMenu() throws IOException {
         this.languageLabel.setVisible(true);

@@ -15,8 +15,8 @@ public class FieldLabel extends Label {
     public FieldLabel(Color color, int row, int column) {
         setAlignment(Pos.CENTER);
         setStyle(getStyle(color));
-        setMinSize(50,50);
-        setMaxSize(50,50);
+        setMinSize(50, 50);
+        setMaxSize(50, 50);
         setRow(row);
         setColumn(column);
     }
@@ -41,7 +41,7 @@ public class FieldLabel extends Label {
         this.row = row;
     }
 
-     int getColumn() {
+    int getColumn() {
         return column;
     }
 

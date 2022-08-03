@@ -1,6 +1,5 @@
 package persistence;
 
-import com.mysql.cj.protocol.Resultset;
 import domain.Player;
 
 import java.sql.*;
@@ -13,10 +12,18 @@ public class PlayerMapper {
     private static final String INSERT_PLAYER = "INSERT INTO Player (playerName, yearOfBirth, gamesCount) VALUES (?, ?, ?)";
     private static final String DECREASE_GAMESCOUNT = "UPDATE Player SET gamescount = gamescount -1 WHERE playerName = ? AND yearOfBirth = ?";
     private static final String INCREASE_GAMESCOUNT = "UPDATE Player SET gamescount = gamescount +2 WHERE playerName = ? AND yearOfBirth = ?";
+    private static Connection connection;
+
+    static {
+        try {
+            connection = DriverManager.getConnection(SQLConnection.DATABASE_URL, "root", "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void registerPlayer(Player player) {
-        try(
-                Connection connection = DriverManager.getConnection(SQLConnection.DATABASE_URL);
+        try (
                 PreparedStatement query = connection.prepareStatement(INSERT_PLAYER)
         ) {
             query.setString(1, player.getPlayerName());
@@ -32,11 +39,9 @@ public class PlayerMapper {
         List<Player> players = new ArrayList<>();
 
         try (
-                Connection connection = DriverManager.getConnection(SQLConnection.DATABASE_URL);
                 PreparedStatement query = connection.prepareStatement(GET_PLAYERS);
-                ResultSet results = query.executeQuery();
-        )
-        {
+                ResultSet results = query.executeQuery()
+        ) {
 
             while (results.next()) {
                 String playerName = results.getString("playerName");
@@ -46,7 +51,7 @@ public class PlayerMapper {
                 players.add(new Player(
                         playerName,
                         yearOfBirth,
-                         gamesCount
+                        gamesCount
                 ));
             }
 
@@ -60,14 +65,13 @@ public class PlayerMapper {
     public Player getPlayer(String playerName, int yearOfBirth) {
         Player player = null;
 
-        try(
-                Connection connection = DriverManager.getConnection(SQLConnection.DATABASE_URL);
+        try (
                 PreparedStatement query = connection.prepareStatement(GET_PLAYER)
         ) {
 
             query.setString(1, playerName);
             query.setInt(2, yearOfBirth);
-            try(ResultSet result = query.executeQuery()) {
+            try (ResultSet result = query.executeQuery()) {
                 if (result.next()) {
                     String resultPlayerName = result.getString("playerName");
                     int resultYearOfBirth = result.getInt("yearOfBirth");
@@ -81,7 +85,7 @@ public class PlayerMapper {
                 }
             }
 
-        }catch (SQLException exception) {
+        } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }
 
@@ -90,29 +94,27 @@ public class PlayerMapper {
 
     /*** UC3 ***/
     public void decreaseGamesCount(Player player) {
-        try(
+        try (
                 Connection connection = DriverManager.getConnection(SQLConnection.DATABASE_URL);
                 PreparedStatement query = connection.prepareStatement(DECREASE_GAMESCOUNT)
         ) {
             query.setString(1, player.getPlayerName());
             query.setInt(2, player.getYearOfBirth());
             query.executeUpdate();
-            }
-        catch (SQLException exception) {
+        } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }
     }
 
     public void increaseGamesCount(Player player) throws SQLException {
-        try(
+        try (
                 Connection connection = DriverManager.getConnection(SQLConnection.DATABASE_URL);
                 PreparedStatement query = connection.prepareStatement(INCREASE_GAMESCOUNT)
         ) {
             query.setString(1, player.getPlayerName());
             query.setInt(2, player.getYearOfBirth());
             query.executeUpdate();
-        }
-        catch (SQLException exception) {
+        } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }
     }

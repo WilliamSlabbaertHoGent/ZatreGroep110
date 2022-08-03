@@ -16,8 +16,8 @@ public class TileLabel extends Label {
     public TileLabel(int value) {
         setAlignment(Pos.CENTER);
         setStyle(getStyle(value));
-        setMinSize(50,50);
-        setMaxSize(50,50);
+        setMinSize(50, 50);
+        setMaxSize(50, 50);
     }
 
     private String getStyle(int value) {

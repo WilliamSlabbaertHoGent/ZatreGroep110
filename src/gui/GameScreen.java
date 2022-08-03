@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class GameScreen extends GridPane {
     private final DomainController domainController;
@@ -59,8 +58,8 @@ public class GameScreen extends GridPane {
 
     private void setFirstActivePlayer() {
         this.domainController.getGame().setActivePlayer();
-        for(Label label : this.playerList){
-            if(label.getText() == this.domainController.getGame().getActivePlayer().getPlayerName()){
+        for (Label label : this.playerList) {
+            if (label.getText() == this.domainController.getGame().getActivePlayer().getPlayerName()) {
                 label.setTextFill(Color.RED);
             }
         }
@@ -68,9 +67,9 @@ public class GameScreen extends GridPane {
 
     private void addComponents() {
         int x = 0;
-        for (Field[] arr: domainController.getGame().getGameBord().getFields()) {
+        for (Field[] arr : domainController.getGame().getGameBord().getFields()) {
             int y = 0;
-            for (Field field: arr) {
+            for (Field field : arr) {
                 if (field != null) {
                     FieldLabel playField = new FieldLabel(field.getColor(), x, y);
                     playField.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -79,8 +78,8 @@ public class GameScreen extends GridPane {
                             try {
                                 domainController.setFieldValue(playField.getRow(), playField.getColumn(), selectedTileValue);
                                 playField.setText(String.valueOf(selectedTileValue));
-                                for (StackPane stack: tileStackPaneList) {
-                                    if (stack.getChildren().contains(selectedTile) && stack.getChildren().contains(selectedText)){
+                                for (StackPane stack : tileStackPaneList) {
+                                    if (stack.getChildren().contains(selectedTile) && stack.getChildren().contains(selectedText)) {
                                         stack.getChildren().remove(selectedTile);
                                         stack.getChildren().remove(selectedText);
                                     }
@@ -102,7 +101,7 @@ public class GameScreen extends GridPane {
         x = 25;
 
         int index = 0;
-        for (Player player: domainController.getGame().getPlayersShuffle()) {
+        for (Player player : domainController.getGame().getPlayersShuffle()) {
             Label label = new Label(player.getPlayerName());
             label.setId(player.getPlayerName() + "Label");
             label.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
@@ -120,14 +119,14 @@ public class GameScreen extends GridPane {
         Button logbutton = new Button("Log");
         Button drawbutton = new Button("Draw");
         Button gamequitbutton = new Button("Quit game");
-        add(endbutton,220,80);
-        add(drawbutton,180,80);
-        add(logbutton,10,80);
-        add(gamequitbutton,360,80);
+        add(endbutton, 220, 80);
+        add(drawbutton, 180, 80);
+        add(logbutton, 10, 80);
+        add(gamequitbutton, 360, 80);
 
 
         RandomStonesAdd(3);
-        logbutton.setOnAction(event-> LogSys());
+        logbutton.setOnAction(event -> LogSys());
         endbutton.setOnAction(event -> EndTurn());
         gamequitbutton.setOnAction(event -> {
             try {
@@ -139,22 +138,23 @@ public class GameScreen extends GridPane {
         addScoreBoard();
 
     }
-    private void EndTurn(){
+
+    private void EndTurn() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("End turn");
         alert.setContentText("Are you sure you want to end your turn?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             this.domainController.getGame().setNextPlayer();
             RandomStonesAdd(3);
-            for ( Node node : this.getChildren() ) {
-                if(node instanceof Label){
-                    var labelNode = (( Label ) node);
-                    if(labelNode.getText() != this.domainController.getGame().getActivePlayer().getPlayerName()){
+            for (Node node : this.getChildren()) {
+                if (node instanceof Label) {
+                    var labelNode = ((Label) node);
+                    if (labelNode.getText() != this.domainController.getGame().getActivePlayer().getPlayerName()) {
                         labelNode.setTextFill(Color.BLACK);
-                    }else{
+                    } else {
                         labelNode.setTextFill(Color.RED);
                     }
                 }
@@ -163,8 +163,9 @@ public class GameScreen extends GridPane {
         }
         addScoreBoard();
     }
-    private void LogSys(){
-        for (ScoreRow scoreRow: domainController.getGame().getActivePlayer().getScoreBoard().getScoreRows()) {
+
+    private void LogSys() {
+        for (ScoreRow scoreRow : domainController.getGame().getActivePlayer().getScoreBoard().getScoreRows()) {
             System.out.println("double score: " + (scoreRow.isDoubleBonus() ? "yes" : "no"));
             System.out.println("10 score: " + (scoreRow.isTenScore() ? "yes" : "no"));
             System.out.println("11 score: " + (scoreRow.isElevenScore() ? "yes" : "no"));
@@ -176,6 +177,7 @@ public class GameScreen extends GridPane {
         System.out.println(domainController.getGame().getGameBord().getLog());
 
     }
+
     private void QuitGame() throws IOException {
         //No language support yet here
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -183,21 +185,22 @@ public class GameScreen extends GridPane {
         alert.setContentText("Are you sure you want to quit ?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             this.homeScreen.showMainMenu();
             this.domainController.startNewGame();
         }
     }
-    private void RandomStonesAdd(int amount){
+
+    private void RandomStonesAdd(int amount) {
         this.playerInventory = this.domainController.RandomTilesShuffle(this.playerInventory, amount);
 
         int x = 180;
         this.getChildren().removeAll(this.tileStackPaneList);
-      
+
         this.tileStackPaneList = new ArrayList<>();
-        for(Tile item : this.playerInventory){
+        for (Tile item : this.playerInventory) {
             StackPane stack = new StackPane();
-            Rectangle tile = new Rectangle(50,50);
+            Rectangle tile = new Rectangle(50, 50);
             Text text = new Text(String.valueOf(item.getValue()));
             tile.setStroke(Color.BLACK);
             tile.setFill(Color.WHITE);
@@ -221,8 +224,8 @@ public class GameScreen extends GridPane {
                     setSelectedTileValue(item.getValue());
                 }
             });
-            stack.getChildren().addAll(tile,text);
-            stack.setPadding(new Insets(5,5,5,5));
+            stack.getChildren().addAll(tile, text);
+            stack.setPadding(new Insets(5, 5, 5, 5));
             add(stack, x, 15);
             this.tileStackPaneList.add(stack);
             x += 10;
@@ -258,23 +261,24 @@ public class GameScreen extends GridPane {
         alert.setHeaderText(text);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             alert.close();
         }
     }
-    private void addScoreBoard(){
+
+    private void addScoreBoard() {
         var x = 5;
         var y = 90;
-        for (var node: this.getChildren()) {
-            if(node instanceof Label){
-                if(this.scoreRowList.contains((Label) node)){
+        for (var node : this.getChildren()) {
+            if (node instanceof Label) {
+                if (this.scoreRowList.contains((Label) node)) {
                     node.setVisible(false);
                 }
             }
         }
         this.scoreRowList = new ArrayList<>();
-        for (var scoreRow: domainController.getGame().getActivePlayer().getScoreBoard().getScoreRows()) {
-            var name = new Label(domainController.getGame().getActivePlayer().getPlayerName()+ " => ");
+        for (var scoreRow : domainController.getGame().getActivePlayer().getScoreBoard().getScoreRows()) {
+            var name = new Label(domainController.getGame().getActivePlayer().getPlayerName() + " => ");
             var doubleS = new Label("double score: " + (scoreRow.isDoubleBonus() ? "yes" : "no") + " | ");
             var tenS = new Label("10 score: " + (scoreRow.isTenScore() ? "yes" : "no") + " | ");
             var elevS = new Label("11 score: " + (scoreRow.isElevenScore() ? "yes" : "no") + " | ");
@@ -289,13 +293,13 @@ public class GameScreen extends GridPane {
             this.scoreRowList.add(bonus);
             this.scoreRowList.add(total);
 
-            add(name,y,x);
-            add(doubleS,y + 1,x);
-            add(tenS,y +2,x);
-            add(elevS,y+3,x);
-            add(twelS,y+4,x);
-            add(bonus,y+5,x);
-            add(total,y+6,x);
+            add(name, y, x);
+            add(doubleS, y + 1, x);
+            add(tenS, y + 2, x);
+            add(elevS, y + 3, x);
+            add(twelS, y + 4, x);
+            add(bonus, y + 5, x);
+            add(total, y + 6, x);
             x += 1;
             y += 1;
         }

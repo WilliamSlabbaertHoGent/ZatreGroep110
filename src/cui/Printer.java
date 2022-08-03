@@ -44,7 +44,7 @@ public class Printer {
     }
 
     public void printPlayerInfo(List<String> playerInfo) {
-        for (String info: playerInfo) {
+        for (String info : playerInfo) {
             this.output.println(ANSI_YELLOW + info + ANSI_RESET);
         }
     }

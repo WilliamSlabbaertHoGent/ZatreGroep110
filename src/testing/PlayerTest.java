@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-import static domain.ConstantInterface.*;
 
 import java.time.Year;
+
+import static domain.ConstantInterface.MIN_AGE;
 
 public class PlayerTest {
     Player player;
@@ -40,7 +41,7 @@ public class PlayerTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    @ValueSource(strings = { "    ", "test" })
+    @ValueSource(strings = {"    ", "test"})
     public void test_newPlayerP_throws_InvalidArgumentException(String input) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             this.player = new Player(input, 1997);

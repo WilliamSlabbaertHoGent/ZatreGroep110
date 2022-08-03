@@ -1,18 +1,14 @@
 package gui;
 
 import controller.DomainController;
-import domain.Game;
-import domain.Tile;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import resources.Language;
-import static domain.ConstantInterface.*;
 
 import java.io.IOException;
-import java.util.Locale;
+
+import static domain.ConstantInterface.LABEL_RESOURCE;
 
 public class HomeScreen extends BorderPane {
 
@@ -22,17 +18,17 @@ public class HomeScreen extends BorderPane {
     private BorderPane selectionMenu;
     private GridPane gameScreen;
 
-    public DomainController getDomainController(){
-        return this.controller;
-    }
-
     public HomeScreen(DomainController controller) throws IOException {
         this.controller = controller;
         this.mainMenu = new MainMenu(this, controller);
         this.registerMenu = new RegisterMenu(this, controller);
-        this.selectionMenu = new SelectionMenu(this, controller );
+        this.selectionMenu = new SelectionMenu(this, controller);
 //        this.gameScreen = new GameScreen(this, controller);
         this.showMainMenu();
+    }
+
+    public DomainController getDomainController() {
+        return this.controller;
     }
 
     public void showMainMenu() throws IOException {
@@ -54,9 +50,9 @@ public class HomeScreen extends BorderPane {
     }
 
     public void showSelectionMenu() throws IOException {
-        this.selectionMenu = new SelectionMenu(this, this.controller );
+        this.selectionMenu = new SelectionMenu(this, this.controller);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectionMenu.fxml"), Language.getInstance().getResourceBundle(LABEL_RESOURCE));
-            loader.setController(this.selectionMenu);
+        loader.setController(this.selectionMenu);
         this.selectionMenu = loader.load();
         this.setCenter(selectionMenu);
     }

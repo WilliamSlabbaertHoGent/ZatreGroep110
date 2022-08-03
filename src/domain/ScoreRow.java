@@ -18,7 +18,7 @@ public class ScoreRow {
     }
 
 
-    public int getTotal(){
+    public int getTotal() {
         int sum = 0;
 
         if (isTenScore()) {

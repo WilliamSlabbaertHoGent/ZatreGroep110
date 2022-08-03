@@ -1,29 +1,29 @@
 package controller;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import domain.Game;
 import domain.Player;
 import domain.PlayerRepository;
 import domain.Tile;
 import exceptions.NoRegisteredPlayerException;
 import resources.Language;
-import static domain.ConstantInterface.*;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import static domain.ConstantInterface.EXCEPTION_RESOURCE;
+import static domain.ConstantInterface.LABEL_RESOURCE;
 
 public class DomainController {
-    private Player player;
     private final PlayerRepository playerRepository;
+    private Player player;
     private Game game;
 
     public DomainController() {
-        this.playerRepository = new PlayerRepository();
-    }
 
-    public void setGame(Game game){
-        this.game = game;
+        this.playerRepository = new PlayerRepository();
+        this.game = new Game();
     }
 
     /*** UC1 ***/
@@ -32,10 +32,10 @@ public class DomainController {
         this.playerRepository.registerPlayer(player);
     }
 
-    public boolean playerIsRegistered()
-    {
+    public boolean playerIsRegistered() {
         return this.player != null;
     }
+
     public List<String> showRegisteredPlayer() {
         if (!this.playerIsRegistered()) {
             throw new NoRegisteredPlayerException(
@@ -62,7 +62,6 @@ public class DomainController {
         return playerInfo;
     }
 
-
     /*** UC2 ***/
     public void selectPlayer(String playerName, int yearOfBirth) {
         if (playerName == null || playerName.isBlank()) {
@@ -82,7 +81,7 @@ public class DomainController {
 
     /*** UC3 ***/
     public void decreaseGamesCountForPlayers() {
-        for (Player player: game.getPlayers()) {
+        for (Player player : game.getPlayers()) {
             this.playerRepository.decreaseGamesCount(player);
         }
     }
@@ -103,6 +102,10 @@ public class DomainController {
         return game;
     }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public void startNewGame() {
         game = new Game();
     }
@@ -113,13 +116,15 @@ public class DomainController {
         shufflePlayers();
         setActivePlayer();
     }
-    public List<Tile> RandomTilesShuffle(List<Tile> playerInventory,int amount){
+
+    public List<Tile> RandomTilesShuffle(List<Tile> playerInventory, int amount) {
         List<Tile> list = this.getGame().getGameInventory().getTiles();
         list.addAll(playerInventory);
-        playerInventory = new ArrayList<Tile>(){};
+        playerInventory = new ArrayList<Tile>() {
+        };
         Random random = new Random();
-        for (int i = 0; i < amount; i++){
-            int int_random = random.nextInt(list.size()-1);
+        for (int i = 0; i < amount; i++) {
+            int int_random = random.nextInt(list.size() - 1);
             playerInventory.add(list.get(int_random));
             list.remove(list.get(int_random));
         }
@@ -127,7 +132,9 @@ public class DomainController {
     }
 
 
-    /** UC4 **/
+    /**
+     * UC4
+     **/
     public void setFieldValue(int row, int column, int value) {
         game.setFieldValue(row, column, value);
     }

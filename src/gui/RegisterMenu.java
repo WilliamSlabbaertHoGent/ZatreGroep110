@@ -1,43 +1,38 @@
 package gui;
 
 import controller.DomainController;
-import domain.ConstantInterface;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import resources.Language;
-import static domain.ConstantInterface.*;
-
 
 import java.io.IOException;
 
+import static domain.ConstantInterface.*;
+
 public class RegisterMenu extends BorderPane {
 
+    public TextField playerNameTXT;
+    public TextField yearOfBirthTXT;
+    public Alert alert = new Alert(Alert.AlertType.NONE);
     private DomainController controller;
     private HomeScreen homeScreen;
-
     public RegisterMenu() throws IOException {
         this.controller = controller;
         this.homeScreen = homeScreen;
     }
-
     public RegisterMenu(HomeScreen homeScreen, DomainController controller) throws IOException {
         this.homeScreen = homeScreen;
         this.controller = controller;
     }
 
-    public TextField playerNameTXT;
-    public TextField yearOfBirthTXT;
-    public Alert alert = new Alert(Alert.AlertType.NONE);
-
     public void registerPlayer() throws IOException {
         String playerName = playerNameTXT.getText();
 
         int yearOfBirth = 0;
-        if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank()) || !(yearOfBirthTXT.getText().matches("\\d*"))))
-        {yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());}
+        if (!((yearOfBirthTXT.getText() == null) || (yearOfBirthTXT.getText().isBlank()) || !(yearOfBirthTXT.getText().matches("\\d*")))) {
+            yearOfBirth = Integer.parseInt(yearOfBirthTXT.getText());
+        }
         try {
             controller.registerPlayer(playerName, yearOfBirth);
             alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -65,8 +60,7 @@ public class RegisterMenu extends BorderPane {
             alert.setHeaderText(exception.getMessage());
             alert.setContentText(exception.getMessage());
             alert.showAndWait();
-        }
-        finally {
+        } finally {
             playerNameTXT.clear();
             yearOfBirthTXT.clear();
         }

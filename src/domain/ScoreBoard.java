@@ -10,18 +10,17 @@ public class ScoreBoard {
         scoreRows = new ArrayList<>();
     }
 
-    public int getTotalScore()
-    {
+    public int getTotalScore() {
         int totalScore = 0;
 
-        for (ScoreRow scoreRow: scoreRows) {
+        for (ScoreRow scoreRow : scoreRows) {
             totalScore += scoreRow.getTotal();
         }
 
         return totalScore;
     }
 
-    public List<ScoreRow> getScoreRows()  {
+    public List<ScoreRow> getScoreRows() {
         return this.scoreRows;
     }
 
@@ -30,7 +29,7 @@ public class ScoreBoard {
         // add Ten Scores
         for (int x = amountTenScores; x > 0; x--) {
             match = false;
-            for (ScoreRow scoreRow: scoreRows) {
+            for (ScoreRow scoreRow : scoreRows) {
                 if (!scoreRow.isTenScore()) {
                     scoreRow.setTenScore(true);
                     match = true;
@@ -46,7 +45,7 @@ public class ScoreBoard {
         // add eleven scores
         for (int x = amountElevenScores; x > 0; x--) {
             match = false;
-            for (ScoreRow scoreRow: scoreRows) {
+            for (ScoreRow scoreRow : scoreRows) {
                 if (!scoreRow.isElevenScore()) {
                     scoreRow.setElevenScore(true);
                     match = true;
@@ -62,7 +61,7 @@ public class ScoreBoard {
 
         for (int x = amountTwelveScores; x > 0; x--) {
             match = false;
-            for (ScoreRow scoreRow: scoreRows) {
+            for (ScoreRow scoreRow : scoreRows) {
                 if (!scoreRow.isTwelveScore()) {
                     scoreRow.setTwelveScore(true);
                     match = true;
@@ -78,7 +77,7 @@ public class ScoreBoard {
         // add doublescores
         for (int x = amountDoubleScores; x > 0; x--) {
             match = false;
-            for (ScoreRow scoreRow: scoreRows) {
+            for (ScoreRow scoreRow : scoreRows) {
                 if (!scoreRow.isTenScore()) {
                     scoreRow.setTenScore(true);
                     match = true;

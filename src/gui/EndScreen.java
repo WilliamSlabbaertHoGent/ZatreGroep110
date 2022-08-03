@@ -10,8 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ public class EndScreen extends GridPane {
     private final HomeScreen homeScreen;
     private final List<Player> playerList;
     private final Player winner;
+
     public EndScreen(HomeScreen homeScreen, DomainController domainController) throws SQLException {
         this.homeScreen = homeScreen;
         this.domainController = domainController;
@@ -34,6 +35,7 @@ public class EndScreen extends GridPane {
         setAlignment(Pos.CENTER);
         addComponents();
     }
+
     public void QuitGame() throws IOException {
         //No language support yet here
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -41,16 +43,16 @@ public class EndScreen extends GridPane {
         alert.setContentText("Are you sure you want to exit ?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             this.homeScreen.showMainMenu();
             this.domainController.startNewGame();
         }
     }
-    private void addComponents()
-    {
+
+    private void addComponents() {
         //Scoreboards
         ArrayList<TableView> scoreBoards = new ArrayList<TableView>();
-        for(Player player : playerList) //Iterate players
+        for (Player player : playerList) //Iterate players
         {
             TableView tempScoreBoard = new TableView(); //reset
             TableColumn<Integer, ScoreRow> cl1 = new TableColumn<>("Ten score");
@@ -81,13 +83,12 @@ public class EndScreen extends GridPane {
             }
             scoreBoards.add(tempScoreBoard);
         }
-        for(TableView tempTable : scoreBoards)
-        {
+        for (TableView tempTable : scoreBoards) {
             VBox vbox = new VBox();
             vbox.getChildren().addAll(tempTable);
             vbox.setSpacing(10);
             vbox.setAlignment(Pos.CENTER);
-            add(vbox,0,0);
+            add(vbox, 0, 0);
         }
 
 
@@ -96,11 +97,11 @@ public class EndScreen extends GridPane {
         label.setId(winner.getPlayerName() + "Label");
         label.setFont(Font.font("Tahoma", FontWeight.BOLD, 28));
         label.setAlignment(Pos.CENTER);
-        add(label,150,150);
+        add(label, 150, 150);
         //Exit button
         Button exitbutton = new Button("Exit");
 
-        add(exitbutton,150,80);
+        add(exitbutton, 150, 80);
         exitbutton.setOnAction(event -> {
             try {
                 QuitGame();

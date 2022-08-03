@@ -6,6 +6,7 @@ import resources.Language;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static domain.ConstantInterface.*;
 
 public class GameBord {
@@ -17,12 +18,12 @@ public class GameBord {
     private int amountDoubleScores = 0;
     private String log;
 
-    public String getLog() {
-        return log;
-    }
-
     public GameBord() {
         setFields();
+    }
+
+    public String getLog() {
+        return log;
     }
 
     public Field[][] getFields() {
@@ -125,7 +126,7 @@ public class GameBord {
 
         if (!firstStone) {
             boolean validField = false;
-            for (Field adjacentField: adjacentFields) {
+            for (Field adjacentField : adjacentFields) {
                 if (adjacentField.getTileValue() != 0) {
                     fieldsWithStones.add(adjacentField);
                     validField = true;
@@ -144,7 +145,7 @@ public class GameBord {
                 );
             }
 
-            if (fields[row][column].getColor() == Color.BLACK){
+            if (fields[row][column].getColor() == Color.BLACK) {
                 if (!isBlackFieldHorizontallyAllowed(row, column, value) && !isBlackFieldVerticallyAllowed(row, column, value)) {
                     throw new InvalidTilePlacementException(
                             Language.getInstance().getString(EXCEPTION_RESOURCE, "exception.invalidBlackField", MIN_BLACK_FIELD_POINTS, MAX_POINTS)
@@ -156,7 +157,7 @@ public class GameBord {
         // loop all fields, check if adjacent field was placed in the same turn, if not throw exception
         if (!firstTurn) {
             boolean validField = false;
-            for (Field adjacentField: fieldsWithStones) {
+            for (Field adjacentField : fieldsWithStones) {
                 if (!currentRoundPlayedFields.contains(adjacentField)) {
                     validField = true;
                     break;
@@ -195,11 +196,11 @@ public class GameBord {
         List<Field> checkedVerticalFields = new ArrayList<>();
         boolean match;
 
-        for (Field playedField: currentRoundPlayedFields) {
+        for (Field playedField : currentRoundPlayedFields) {
             match = false;
             // check horizontal score
             List<Field> adjacentHorizontalFields = getAllHorizontalAdjacentFields(playedField.getRow(), playedField.getColumn());
-            for (Field checkedHorizontalField: checkedHorizontalFields) {
+            for (Field checkedHorizontalField : checkedHorizontalFields) {
                 if (adjacentHorizontalFields.contains(checkedHorizontalField)) {
                     match = true;
                     break;
@@ -217,13 +218,13 @@ public class GameBord {
                 amountTenScoresCurrentRound++;
             } else if (horizontalScore == 11) {
                 amountElevenScoresCurrentRound++;
-            } else if (horizontalScore == 12){
+            } else if (horizontalScore == 12) {
                 amountTwelveScoresCurrentRound++;
             }
 
             // check vertical score
             List<Field> adjacentVerticalFields = getAllHorizontalAdjacentFields(playedField.getRow(), playedField.getColumn());
-            for (Field checkedVerticalField: checkedVerticalFields) {
+            for (Field checkedVerticalField : checkedVerticalFields) {
                 match = false;
                 if (adjacentVerticalFields.contains(checkedVerticalField)) {
                     match = true;
@@ -242,7 +243,7 @@ public class GameBord {
                 amountTenScoresCurrentRound++;
             } else if (verticalScore == 11) {
                 amountElevenScoresCurrentRound++;
-            } else if (verticalScore == 12){
+            } else if (verticalScore == 12) {
                 amountTwelveScoresCurrentRound++;
             }
         }
@@ -321,7 +322,7 @@ public class GameBord {
         int sum = 0;
         List<Field> horizontalAdjacentFields = getAllHorizontalAdjacentFields(row, column);
 
-        for (Field field: horizontalAdjacentFields) {
+        for (Field field : horizontalAdjacentFields) {
             sum += field.getTileValue();
         }
 
@@ -332,14 +333,14 @@ public class GameBord {
         int sum = 0;
         List<Field> verticalAdjacentFields = getAllVerticalAdjacentFields(row, column);
 
-        for (Field field: verticalAdjacentFields) {
+        for (Field field : verticalAdjacentFields) {
             sum += field.getTileValue();
         }
 
         return sum;
     }
 
-    private boolean isHorizontalScoreHigherThan12(int row, int column , int value) {
+    private boolean isHorizontalScoreHigherThan12(int row, int column, int value) {
         int sum = getHorizontalScore(row, column);
         return (sum + value) > MAX_POINTS;
     }

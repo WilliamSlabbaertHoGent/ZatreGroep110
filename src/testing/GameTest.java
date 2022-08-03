@@ -47,12 +47,12 @@ public class GameTest {
         // add four players
         for (int x = 1; x <= 4; x++) {
             this.game.addPlayer(
-              new Player(String.format("testcase%d", x), yearOfBirth)
+                    new Player(String.format("testcase%d", x), yearOfBirth)
             );
         }
 
         Assertions.assertThrows(PlayerSelectedException.class, () -> {
-           this.game.addPlayer(new Player("testcase5", yearOfBirth));
+            this.game.addPlayer(new Player("testcase5", yearOfBirth));
         });
     }
 

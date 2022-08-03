@@ -44,7 +44,7 @@ public class ZatreApplicatie {
 
 
                 /*** END UC1 ***/
-            } else if (choice == 2){
+            } else if (choice == 2) {
                 if (controller.hasMaxPlayers()) {
                     break;
                 }
@@ -68,7 +68,7 @@ public class ZatreApplicatie {
                 } while (!playerSelected && !controller.hasMaxPlayers());
 
                 List<List<String>> allSelectedPlayers = controller.getAllSelectedPlayers();
-                for (List<String> playerInfo: allSelectedPlayers) {
+                for (List<String> playerInfo : allSelectedPlayers) {
                     printer.printPlayerInfo(playerInfo);
                 }
             }

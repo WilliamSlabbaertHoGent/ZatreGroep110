@@ -2,7 +2,8 @@ package exceptions;
 
 
 public class PlayerExistsException extends RuntimeException {
-    public PlayerExistsException(){}
+    public PlayerExistsException() {
+    }
 
     public PlayerExistsException(String message) {
         super(message);

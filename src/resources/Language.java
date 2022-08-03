@@ -11,7 +11,7 @@ public class Language {
     private Language() {
         //TODO::switch to fixed languages (EN/NL via GUI selection)??
         this.locale = new Locale(Locale.getDefault().getLanguage());
-     //   this.locale = new Locale("nl");
+        //   this.locale = new Locale("nl");
     }
 
     public static synchronized Language getInstance() {

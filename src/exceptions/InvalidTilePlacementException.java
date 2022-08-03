@@ -1,6 +1,6 @@
 package exceptions;
 
-public class InvalidTilePlacementException extends RuntimeException{
+public class InvalidTilePlacementException extends RuntimeException {
     public InvalidTilePlacementException() {
     }
 
