@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/resources/ErrorBundle_de.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/ErrorBundle_en.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/ErrorBundle_fr.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/ErrorBundle_nl.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/ExceptionBundle_de.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/ExceptionBundle_en.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/ExceptionBundle_fr.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/ExceptionBundle_nl.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LabelBundle_de.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LabelBundle_en.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LabelBundle_fr.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LabelBundle_nl.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/resources/ErrorBundle_de.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/ErrorBundle_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/ErrorBundle_fr.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/ErrorBundle_nl.properties" />
+      <base-name>ErrorBundle</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/resources/ExceptionBundle_de.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/ExceptionBundle_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/ExceptionBundle_fr.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/ExceptionBundle_nl.properties" />
+      <base-name>ExceptionBundle</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/resources/LabelBundle_de.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LabelBundle_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LabelBundle_fr.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LabelBundle_nl.properties" />
+      <base-name>LabelBundle</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>
